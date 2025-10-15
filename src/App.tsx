@@ -13,7 +13,6 @@ import Contact from './pages/Contact';
 import Terms from './pages/Terms'; 
 import OnboardingAgreement from './pages/OnboardingAgreement'; 
 import Privacy from './pages/Privacy';
-import FAQ from './FAQ';
 import NotFound from './pages/NotFound';
 import Offer from './pages/Offer';
 import GrowthServices from './pages/GrowthServices';
@@ -50,7 +49,6 @@ function App() {
             <Route path="/onboarding-agreement" element={<OnboardingAgreement />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/faq" element={<FAQ />} />
             <Route path="/growth-services" element={<GrowthServices />} />
             
             <Route path="/Offer" element={<Offer />} />
