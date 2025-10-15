@@ -53,16 +53,16 @@ const Home = () => {
   const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
   const WHATSAPP_NUMBER = "919310533973";
 
-  // Hero Slides
+  // Hero Slides - Updated for ₹99 starting
   const heroSlides = [
     {
       title: "Premium Backlink Services",
-      subtitle: "Demo Package: ₹1 Only",
+      subtitle: "Starting at Just ₹99",
       originalPrice: "₹999",
       description: "Buy High Quality DoFollow Backlinks with 70-90 DA, PA Wiki, Article Directories, Social Bookmarks & News Sites. Google Algorithm Safe Link Building for Higher Rankings.",
-      badge: "🚀 DEMO ₹1 ONLY",
+      badge: "🚀 STARTING AT ₹99",
       bgGradient: "from-blue-900 via-indigo-800 to-purple-700",
-      cta: "Try Demo for ₹1"
+      cta: "View Packages"
     },
     {
       title: "Google Algorithm Safe Link Building",
@@ -84,32 +84,8 @@ const Home = () => {
     }
   ];
 
-  // Backlink Packages - MOVED UP RIGHT AFTER HERO
+  // Backlink Packages - REMOVED ₹1 DEMO, STARTING FROM ₹99
   const backlinkPackages = [
-    {
-      id: "demo_backlinks",
-      name: "EAGLE DEMO",
-      price: 1,
-      displayPrice: "₹1",
-      originalPrice: "₹999",
-      backlinks: "10 Premium Backlinks",
-      keywords: "SEO For 1 Keyword & 1 URL",
-      features: [
-        "10 Quality Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Social Bookmarking",
-        "5 Authority Profile Links",
-        "Delivery Within 3 Working Days",
-        "100% Google Safe",
-        "Fast Index Process",
-        "Perfect for Testing Service Quality"
-      ],
-      popular: false,
-      badge: "DEMO",
-      color: "from-blue-500 to-cyan-500",
-      demo: true,
-      icon: "🚀"
-    },
     {
       id: "300_backlinks",
       name: "EAGLE START",
@@ -397,9 +373,9 @@ const Home = () => {
     {
       name: "Priya Sharma",
       company: "Blogger & Content Creator",
-      text: "The demo package convinced me to go for the full service. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
+      text: "The affordable pricing and quality service convinced me. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
       rating: 5,
-      service: "Demo + 1200 Backlinks"
+      service: "300 Backlinks Package"
     },
     {
       name: "Amit Patel",
@@ -543,7 +519,7 @@ const Home = () => {
         <title>360EagleWeb - Premium Backlink Services | Buy High Quality DoFollow Backlinks</title>
         <meta 
           name="description" 
-          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Demo: ₹1 Only."
+          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Starting at ₹99."
         />
         <meta 
           name="keywords" 
@@ -627,7 +603,7 @@ const Home = () => {
               🦅 EagleWeb Backlink Packages
             </h2>
             <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
-              Choose your flight plan to higher rankings with premium backlinks
+              Premium backlink services starting at just ₹99 - Choose your flight plan to higher rankings
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
@@ -647,19 +623,13 @@ const Home = () => {
               <div 
                 key={index} 
                 className={`bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
-                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-3' : 
-                  pkg.demo ? 'border-blue-500 transform hover:-translate-y-3' : 'border-blue-200 hover:border-blue-400'
+                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-3' : 'border-blue-200 hover:border-blue-400'
                 } overflow-hidden group animate-fade-in-up`}
                 style={{animationDelay: `${index * 0.1}s`}}
               >
                 {pkg.popular && (
                   <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
                     ⭐ MOST POPULAR CHOICE
-                  </div>
-                )}
-                {pkg.demo && (
-                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
-                    🚀 PERFECT FOR TESTING
                   </div>
                 )}
                 
@@ -678,9 +648,7 @@ const Home = () => {
                       <span className="text-3xl md:text-4xl font-bold text-blue-600">{pkg.displayPrice}</span>
                       <span className="text-lg md:text-xl text-blue-400 line-through">{pkg.originalPrice}</span>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-sm font-bold ${
-                      pkg.demo ? 'bg-blue-500 text-white' : 'bg-red-500 text-white'
-                    }`}>
+                    <span className="px-3 py-1 rounded-full text-sm font-bold bg-red-500 text-white">
                       {pkg.badge}
                     </span>
                   </div>
@@ -699,14 +667,12 @@ const Home = () => {
                   <button
                     onClick={() => handlePayment(pkg)}
                     className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg ${
-                      pkg.demo 
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white animate-pulse' 
-                        : pkg.popular
+                      pkg.popular
                         ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
                         : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
                     }`}
                   >
-                    {pkg.demo ? '🚀 Try Demo - ₹1 Only' : `🦅 Order Now - ${pkg.displayPrice}`}
+                    🦅 Order Now - {pkg.displayPrice}
                   </button>
                 </div>
               </div>
@@ -720,6 +686,9 @@ const Home = () => {
             </h3>
             <p className="text-blue-800 text-lg">
               Get <span className="font-bold">90% OFF</span> on all packages + Free SEO Consultation worth ₹999
+            </p>
+            <p className="text-blue-700 text-sm mt-2">
+              Starting at just ₹99 for 300 Premium Backlinks
             </p>
           </div>
         </div>
@@ -791,7 +760,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Rest of the sections remain the same... */}
       {/* === FEATURES SECTION === */}
       <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -933,7 +901,7 @@ const Home = () => {
       <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 animate-pulse">Ready to Soar Your Rankings?</h2>
-          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services at <span className="text-yellow-300 font-semibold">90% OFF</span>. Try our demo for just ₹1!</p>
+          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services starting at just <span className="text-yellow-300 font-semibold">₹99</span> with <span className="text-yellow-300 font-semibold">90% OFF</span>!</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
@@ -946,7 +914,7 @@ const Home = () => {
               onClick={() => handlePayment(backlinkPackages[0])}
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
             >
-              <span>🚀 Try Demo for ₹1</span>
+              <span>🚀 Start from ₹99</span>
             </button>
           </div>
           

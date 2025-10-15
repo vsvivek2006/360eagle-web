@@ -451,7 +451,7 @@ const GrowthServices: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const whatsappMessage = `🎯 Growth Services Inquiry - DiziGrow 🎯\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`;
+    const whatsappMessage = `🎯 Growth Services Order - Premium Growth Services 🎯\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.service}\nMessage: ${formData.message}`;
     
     const encodedMessage = encodeURIComponent(whatsappMessage);
     window.open(`https://wa.me/91${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
@@ -463,7 +463,7 @@ const GrowthServices: React.FC = () => {
   const handleSuccessSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const whatsappMessage = `✅ Growth Services Payment Success - DiziGrow 🎯\n\nPayment Details:\nName: ${successFormData.name}\nEmail: ${successFormData.email}\nUTR Number: ${successFormData.utr}\nService: ${successFormData.service}\nQuantity: ${successFormData.quantity}\nAmount Paid: ₹${successFormData.amount}\nLink: ${successFormData.link}\n\nPlease verify my payment and start the service!`;
+    const whatsappMessage = `✅ Growth Services Payment Success - Premium Growth Services 🎯\n\nPayment Details:\nName: ${successFormData.name}\nEmail: ${successFormData.email}\nUTR Number: ${successFormData.utr}\nService: ${successFormData.service}\nQuantity: ${successFormData.quantity}\nAmount Paid: ₹${successFormData.amount}\nLink: ${successFormData.link}\n\nPlease verify my payment and start the service!`;
     
     const encodedMessage = encodeURIComponent(whatsappMessage);
     window.open(`https://wa.me/91${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
@@ -515,7 +515,7 @@ const GrowthServices: React.FC = () => {
         key: RAZORPAY_KEY_ID,
         amount: paymentAmount * 100,
         currency: 'INR',
-        name: 'DiziGrow - Growth Services',
+        name: 'Premium Growth Services',
         description: `${selectedService?.name} - Quantity: ${quantity}`,
         image: '/logo.png',
         handler: function (response: any) {
@@ -602,7 +602,7 @@ const GrowthServices: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50" style={{ fontFamily: "'Haboro Serif', serif" }}>
       <Helmet>
-        <title>Growth Services - Instagram, Facebook, LinkedIn Services | DiziGrow</title>
+        <title>Growth Services - Instagram, Facebook, LinkedIn Services | Premium Growth Services</title>
         <meta name="description" content="Premium growth services: Instagram followers, likes, views | Facebook services | LinkedIn followers | Website traffic. Boost your social media growth!" />
         <link href="https://fonts.googleapis.com/css2?family=Haboro+Serif:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Helmet>
@@ -698,7 +698,7 @@ const GrowthServices: React.FC = () => {
             </button>
             <button onClick={() => setIsFormOpen(true)} className="bg-green-500 hover:bg-green-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl text-base md:text-lg font-bold transition-all hover:scale-105 hover:shadow-xl flex items-center gap-2 shadow-lg justify-center">
               <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
-              Get Free Consultation
+              Order Now
             </button>
           </div>
         </div>
@@ -794,12 +794,6 @@ const GrowthServices: React.FC = () => {
                         : 'Order Now'
                     }
                   </button>
-                  <button 
-                    onClick={() => openQuickForm(service.name)} 
-                    className="w-full py-2 rounded-xl font-bold transition-all hover:scale-105 text-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white text-sm"
-                  >
-                    💬 Get More Info
-                  </button>
                 </div>
               </div>
             ))}
@@ -840,7 +834,7 @@ const GrowthServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div>
-              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-blue-400">DiziGrow Growth Services</h3>
+              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-blue-400">Premium Growth Services</h3>
               <p className="text-gray-400 text-sm md:text-base">
                 Your trusted partner for social media growth and online success.
               </p>
@@ -855,7 +849,7 @@ const GrowthServices: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  <span>info@dizigrow.com</span>
+                  <span>info@growthservices.com</span>
                 </div>
               </div>
             </div>
@@ -881,7 +875,7 @@ const GrowthServices: React.FC = () => {
           
           <div className="border-t border-gray-700 mt-6 md:mt-8 pt-6 md:pt-8 text-center">
             <p className="text-gray-400 text-sm md:text-base">
-              © 2024 DiziGrow Growth Services. All rights reserved.
+              © 2024 Premium Growth Services. All rights reserved.
             </p>
           </div>
         </div>
@@ -971,13 +965,6 @@ const GrowthServices: React.FC = () => {
               >
                 <CreditCard className="h-4 w-4 md:h-5 md:w-5" />
                 Pay ₹{paymentAmount.toLocaleString()} Now
-              </button>
-
-              <button 
-                onClick={() => {setIsPaymentOpen(false); setIsFormOpen(true);}}
-                className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white py-2 md:py-3 rounded-xl font-bold transition-all hover:scale-105 text-center block border-2 border-blue-300 text-sm md:text-base"
-              >
-                💬 Contact First Instead
               </button>
             </div>
           </div>
@@ -1100,16 +1087,16 @@ const GrowthServices: React.FC = () => {
         </div>
       )}
 
-      {/* Contact Form Modal */}
+      {/* Order Form Modal */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl border-2 border-purple-300">
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-                  Get Free Growth Consultation
+                  Place Your Order
                 </h3>
-                <p className="text-purple-600 font-semibold text-sm mt-1">We'll help you choose the right growth service</p>
+                <p className="text-purple-600 font-semibold text-sm mt-1">Complete your order details and we'll start immediately</p>
               </div>
               <button onClick={() => setIsFormOpen(false)} className="text-gray-500 hover:text-gray-700 p-1 hover:bg-gray-100 rounded-full">
                 <X className="h-5 w-5 md:h-6 md:w-6" />
@@ -1185,7 +1172,7 @@ const GrowthServices: React.FC = () => {
                 className="w-full py-3 md:py-4 rounded-xl font-bold transition-all hover:scale-105 flex items-center justify-center gap-2 md:gap-3 text-base md:text-lg shadow-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-2 border-purple-300"
               >
                 <Send className="h-4 w-4 md:h-5 md:w-5" />
-                Send Growth Inquiry
+                Place Order
               </button>
             </form>
           </div>
