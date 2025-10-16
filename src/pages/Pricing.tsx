@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { Check, Star, Zap, Shield, Clock, Users, TrendingUp, ArrowRight, Plus, Minus } from 'lucide-react';
+import { Check, Star, Zap, Shield, Clock, Users, TrendingUp, ArrowRight, Plus, Minus, CreditCard, X } from 'lucide-react';
 import { Helmet } from 'react-helmet';
+
+// Razorpay types
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 const Pricing = () => {
   const [quantities, setQuantities] = useState({
@@ -19,12 +26,107 @@ const Pricing = () => {
     website4Page: 1
   });
 
-  // WhatsApp Order Function
-  const placeOrder = (serviceName, price, quantity = 1) => {
-    const totalPrice = typeof price === 'number' ? price * quantity : price;
-    const message = `🦅 360EagleWeb - New Order\n\nService: ${serviceName}\nQuantity: ${quantity}\nTotal Price: ${totalPrice}\n\nI want to order this service. Please proceed.`;
-    const whatsappUrl = `https://wa.me/919310533973?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [isSuccessFormOpen, setIsSuccessFormOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState({
+    name: "",
+    price: 0,
+    quantity: 1,
+    type: ""
+  });
+
+  const [successFormData, setSuccessFormData] = useState({
+    name: "",
+    email: "",
+    website: "",
+    keywords: "",
+    phone: "",
+    utr: ""
+  });
+
+  // ✅ Razorpay Configuration
+  const RAZORPAY_KEY_ID = "rzp_live_RTs0P1lgBNFTvK";
+  const WHATSAPP_NUMBER = "9310533973";
+
+  // Payment Functions
+  const openPaymentModal = (serviceName, price, quantity = 1, serviceType = "") => {
+    setSelectedService({
+      name: serviceName,
+      price: price,
+      quantity: quantity,
+      type: serviceType
+    });
+    setIsPaymentOpen(true);
+  };
+
+  const initiateRazorpayPayment = async () => {
+    try {
+      if (!window.Razorpay) {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.async = true;
+        document.body.appendChild(script);
+        
+        await new Promise((resolve) => {
+          script.onload = resolve;
+        });
+      }
+
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: selectedService.price * 100,
+        currency: 'INR',
+        name: '360EagleWeb - Premium SEO Services',
+        description: `${selectedService.name} - ${selectedService.quantity} ${selectedService.type}`,
+        image: '/logo.png',
+        handler: function (response: any) {
+          // Open success form after payment
+          setIsSuccessFormOpen(true);
+          setIsPaymentOpen(false);
+        },
+        prefill: {
+          name: 'Customer',
+          email: 'customer@example.com',
+          contact: ''
+        },
+        notes: {
+          service: selectedService.name,
+          quantity: selectedService.quantity.toString(),
+          type: selectedService.type
+        },
+        theme: {
+          color: '#3B82F6'
+        }
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+      
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('Payment failed. Please try again or contact us on WhatsApp.');
+    }
+  };
+
+  // WhatsApp Order Function after payment
+  const submitSuccessForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const whatsappMessage = `✅ 360EagleWeb - Payment Success 🦅\n\nPayment Details:\nName: ${successFormData.name}\nEmail: ${successFormData.email}\nPhone: ${successFormData.phone}\nWebsite: ${successFormData.website}\nKeywords: ${successFormData.keywords}\nUTR Number: ${successFormData.utr}\nService: ${selectedService.name}\nQuantity: ${selectedService.quantity}\nAmount Paid: ₹${selectedService.price}\n\nPlease verify my payment and start the service!`;
+    
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    window.open(`https://wa.me/91${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+    
+    setIsSuccessFormOpen(false);
+    setSuccessFormData({ name: "", email: "", website: "", keywords: "", phone: "", utr: "" });
+    alert("Thank you! We'll verify your payment and start your service within 24 hours. 🎉");
+  };
+
+  const handleSuccessFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSuccessFormData({
+      ...successFormData,
+      [e.target.name]: e.target.value
+    });
   };
 
   // Quantity handlers
@@ -294,6 +396,158 @@ const Pricing = () => {
         />
       </Helmet>
 
+      {/* Payment Modal */}
+      {isPaymentOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl border-2 border-blue-300">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                  <CreditCard className="h-6 w-6 text-blue-500" />
+                  Secure Payment
+                </h3>
+                <p className="text-blue-600 font-semibold text-sm mt-1">{selectedService.name}</p>
+                <p className="text-gray-600 text-sm">Quantity: {selectedService.quantity}</p>
+              </div>
+              <button onClick={() => setIsPaymentOpen(false)} className="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-blue-50 p-4 rounded-xl border-2 border-blue-200">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">
+                    ₹{selectedService.price.toLocaleString()}
+                  </div>
+                  <div className="font-semibold text-blue-700 text-lg">
+                    Total Amount
+                  </div>
+                </div>
+              </div>
+
+              <button 
+                onClick={initiateRazorpayPayment}
+                className="w-full py-4 rounded-xl font-bold transition-all hover:scale-105 flex items-center justify-center gap-3 text-lg shadow-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-2 border-blue-300"
+              >
+                <CreditCard className="h-5 w-5" />
+                Pay ₹{selectedService.price.toLocaleString()} Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Form Modal - Opens after payment */}
+      {isSuccessFormOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl border-2 border-green-300">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                  <span className="text-green-500">✅</span>
+                  Payment Successful! 🎉
+                </h3>
+                <p className="text-green-600 font-semibold text-sm mt-1">Complete your details to start service</p>
+              </div>
+              <button onClick={() => setIsSuccessFormOpen(false)} className="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <form onSubmit={submitSuccessForm} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                <input 
+                  type="text" 
+                  name="name" 
+                  required 
+                  value={successFormData.name} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter your full name" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  required 
+                  value={successFormData.email} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter your email" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  required 
+                  value={successFormData.phone} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter your phone number" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Website URL *</label>
+                <input 
+                  type="url" 
+                  name="website" 
+                  required 
+                  value={successFormData.website} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter your website URL" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Target Keywords *</label>
+                <textarea 
+                  name="keywords" 
+                  required 
+                  value={successFormData.keywords} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter your target keywords (comma separated)"
+                  rows={3}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">UTR Number *</label>
+                <input 
+                  type="text" 
+                  name="utr" 
+                  required 
+                  value={successFormData.utr} 
+                  onChange={handleSuccessFormChange} 
+                  className="w-full px-4 py-3 border border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" 
+                  placeholder="Enter UTR number from payment" 
+                />
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="text-sm text-gray-600">
+                  <div><strong>Service:</strong> {selectedService.name}</div>
+                  <div><strong>Amount Paid:</strong> ₹{selectedService.price}</div>
+                  <div><strong>Quantity:</strong> {selectedService.quantity}</div>
+                </div>
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full py-4 rounded-xl font-bold transition-all hover:scale-105 flex items-center justify-center gap-3 text-lg shadow-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-2 border-green-300"
+              >
+                <span>📤 Submit & Start Service</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-700 text-white py-20 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -391,10 +645,16 @@ const Pricing = () => {
                   </ul>
 
                   <button
-                    onClick={() => placeOrder(service.name, calculateBacklinkPrice(service), quantities[service.id])}
-                    className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                    onClick={() => openPaymentModal(
+                      service.name, 
+                      calculateBacklinkPrice(service), 
+                      quantities[service.id],
+                      service.unit
+                    )}
+                    className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
                   >
-                    🔗 Order {quantities[service.id]} {service.unit} - ₹{calculateBacklinkPrice(service).toLocaleString()}
+                    <CreditCard className="h-4 w-4" />
+                    Order {quantities[service.id]} {service.unit} - ₹{calculateBacklinkPrice(service).toLocaleString()}
                   </button>
                 </div>
               </div>
@@ -492,14 +752,20 @@ const Pricing = () => {
                   </ul>
 
                   <button
-                    onClick={() => placeOrder(pkg.name, pkg.price * quantities[pkg.id], quantities[pkg.id])}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 ${
+                    onClick={() => openPaymentModal(
+                      pkg.name, 
+                      pkg.price * quantities[pkg.id], 
+                      quantities[pkg.id],
+                      "package"
+                    )}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 ${
                       pkg.popular
                         ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900'
                         : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white'
                     }`}
                   >
-                    🚀 Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                    <CreditCard className="h-4 w-4" />
+                    Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
                   </button>
                 </div>
               </div>
@@ -597,14 +863,20 @@ const Pricing = () => {
                   </ul>
 
                   <button
-                    onClick={() => placeOrder(pkg.name, pkg.price * quantities[pkg.id], quantities[pkg.id])}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 ${
+                    onClick={() => openPaymentModal(
+                      pkg.name, 
+                      pkg.price * quantities[pkg.id], 
+                      quantities[pkg.id],
+                      "package"
+                    )}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 ${
                       pkg.popular
                         ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900'
                         : 'bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white'
                     }`}
                   >
-                    📈 Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                    <CreditCard className="h-4 w-4" />
+                    Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
                   </button>
                 </div>
               </div>
@@ -613,7 +885,6 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Other Services Sections (GMB & Website) - Similar pattern */}
       {/* Final CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -626,7 +897,7 @@ const Pricing = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => placeOrder('Consultation', 'FREE')}
+              onClick={() => openPaymentModal('Consultation', 0, 1, 'free')}
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center space-x-2"
             >
               <span>📞 FREE Consultation</span>
@@ -666,7 +937,12 @@ const Pricing = () => {
           </button>
 
           <button
-            onClick={() => placeOrder('Blog Backlinks', calculateBacklinkPrice(backlinkServices[0]), quantities.blogBacklinks)}
+            onClick={() => openPaymentModal(
+              backlinkServices[0].name, 
+              calculateBacklinkPrice(backlinkServices[0]), 
+              quantities.blogBacklinks,
+              backlinkServices[0].unit
+            )}
             className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
           >
             <span className="text-lg">🛒</span>

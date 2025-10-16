@@ -592,7 +592,7 @@ const Home = () => {
         <link rel="canonical" href="https://360eagleweb.com" />
       </Helmet>
 
-      {/* === HERO SECTION === */}
+      {/* === HERO SECTION - FIXED AND CENTERED === */}
       <section className="relative h-screen overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
@@ -604,46 +604,59 @@ const Home = () => {
             } bg-gradient-to-br ${slide.bgGradient}`}
           >
             <div className="relative h-full flex items-center justify-center text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div className={`inline-flex items-center bg-white text-blue-600 px-4 py-2 rounded-full text-sm md:text-lg font-bold mb-6 md:mb-8 ${
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+                {/* Badge - Centered */}
+                <div className={`inline-flex items-center bg-white text-blue-600 px-4 py-2 rounded-full text-sm md:text-base font-bold mb-6 md:mb-8 ${
                   index === currentSlide ? 'animate-bounce' : ''
                 }`}>
                   🦅 {slide.badge}
                 </div>
 
-                <h1 className={`text-3xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight ${
-                  index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
-                }`}>
-                  {slide.title}
-                  <span className="block text-yellow-300 mt-2 md:mt-4 text-2xl md:text-4xl lg:text-5xl">
-                    {slide.subtitle}
-                  </span>
-                  <span className="block text-white/70 text-xl md:text-2xl mt-2 line-through">
-                    {slide.originalPrice}
-                  </span>
-                </h1>
+                {/* Main Title - Centered and Responsive */}
+                <div className="mb-6 md:mb-8">
+                  <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold leading-tight ${
+                    index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                  }`}>
+                    {slide.title}
+                  </h1>
+                  
+                  {/* Subtitle - Centered */}
+                  <div className={`mt-4 md:mt-6 ${
+                    index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                  }`}>
+                    <span className="text-2xl md:text-4xl lg:text-5xl text-yellow-300 block mb-2">
+                      {slide.subtitle}
+                    </span>
+                    <span className="text-xl md:text-2xl text-white/70 line-through block">
+                      {slide.originalPrice}
+                    </span>
+                  </div>
+                </div>
                 
+                {/* Description - Centered */}
                 <p className={`text-base md:text-xl mb-6 md:mb-8 max-w-4xl mx-auto text-white/90 leading-relaxed ${
                   index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
                 }`}>
                   {slide.description}
                 </p>
                 
+                {/* CTA Button - Centered */}
                 <div className={`${
                   index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
                 }`}>
-                  <Link
-                    to="/services"
+                  <button
+                    onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
                     className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-500/30 mx-auto"
                   >
                     <span>🦅 {slide.cta}</span>
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         ))}
 
+        {/* Slide Indicators */}
         <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3">
           {heroSlides.map((_, index) => (
             <button
@@ -978,12 +991,12 @@ const Home = () => {
           <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services starting at just <span className="text-yellow-300 font-semibold">₹99</span> with <span className="text-yellow-300 font-semibold">90% OFF</span>!</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <Link
-              to="/services"
+            <button
+              onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 animate-bounce"
             >
               <span>🦅 View All Packages</span>
-            </Link>
+            </button>
             <button
               onClick={() => handlePayment(backlinkPackages[0])}
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
