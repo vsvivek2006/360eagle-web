@@ -473,6 +473,50 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      {/* === MOBILE BOTTOM NAVIGATION BAR === */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+        <div className="flex justify-around items-center py-3">
+          {/* Home */}
+          <Link
+            to="/"
+            className="flex flex-col items-center space-y-1 text-blue-600"
+          >
+            <span className="text-lg">🏠</span>
+            <span className="text-xs font-medium">Home</span>
+          </Link>
+
+          {/* Search */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">🔍</span>
+            <span className="text-xs font-medium">Search</span>
+          </button>
+
+          {/* Add to Cart - Blog Backlinks */}
+          <Link
+            to="/pricing"
+            className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
+          >
+            <span className="text-lg">🛒</span>
+            <span className="text-xs font-medium">Add to Cart</span>
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              ₹100
+            </span>
+          </Link>
+
+          {/* Pricing */}
+          <Link
+            to="/pricing"
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">💰</span>
+            <span className="text-xs font-medium">Pricing</span>
+          </Link>
+        </div>
+      </div>
+
       <style jsx>{`
         @keyframes fade-in-up {
           from {

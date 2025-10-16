@@ -96,7 +96,7 @@ Let's grow business together 🚀`;
                 <div className="flex items-center space-x-3">
                   <MapPin className="h-5 w-5 text-purple-400" />
                   <span className="text-lg">
-                    120/130 Ward No 18 Fasiya Dangal Road Godda 814133
+                   Greater Noida, Uttar Pradesh 201306
                   </span>
                 </div>
               </div>

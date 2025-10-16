@@ -30,10 +30,10 @@ const WhatsAppFloat = () => {
 
   return (
     <>
-      {/* Floating WhatsApp Button */}
+      {/* Floating WhatsApp Button - RIGHT SIDE MIDDLE POSITION */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110 animate-pulse flex items-center gap-2"
+        className="fixed top-1/2 right-6 transform -translate-y-1/2 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all hover:scale-110 animate-pulse flex items-center gap-2"
         aria-label="Join as B2B"
       >
         <MessageCircle className="h-6 w-6" />

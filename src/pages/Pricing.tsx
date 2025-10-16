@@ -1,626 +1,400 @@
 import React, { useState } from 'react';
-import { Check, Star, Zap, Shield, Clock, Users, TrendingUp, Link2, Globe, Award, Rocket, Target, BarChart3 } from 'lucide-react';
+import { Check, Star, Zap, Shield, Clock, Users, TrendingUp, ArrowRight, Plus, Minus } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
-// Razorpay types
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
-
 const Pricing = () => {
-  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
-  const [paymentService, setPaymentService] = useState("");
-  const [paymentAmount, setPaymentAmount] = useState(0);
-  const [originalAmount, setOriginalAmount] = useState(0);
+  const [quantities, setQuantities] = useState({
+    blogBacklinks: 50,
+    socialBookmarks: 100,
+    wikiBacklinks: 100,
+    mozDA25: 1,
+    mozDA35: 1,
+    mozDA40: 1,
+    ahrefsDR25: 1,
+    ahrefsDR35: 1,
+    ahrefsDR40: 1,
+    gmbSetup: 1,
+    gmbRanking: 1,
+    landingPage: 1,
+    website4Page: 1
+  });
 
-  const RAZORPAY_KEY_ID = 'rzp_live_ROjWHHKbSiP7Al';
-
-  // Payment Handler
-  const handlePayment = async (amount: number, serviceName: string) => {
-    try {
-      const amountInPaise = Math.round(amount * 100);
-      
-      const options = {
-        key: RAZORPAY_KEY_ID,
-        amount: amountInPaise,
-        currency: 'INR',
-        name: '360EagleWeb Backlink Services',
-        description: `${serviceName} - Advance Payment`,
-        handler: function(response: any) {
-          alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-          window.location.href = `https://wa.me/919310533973?text=Payment Successful for ${serviceName}. Payment ID: ${response.razorpay_payment_id}`;
-        },
-        prefill: {
-          name: 'Customer Name',
-          email: 'customer@example.com',
-          contact: '+919999999999'
-        },
-        notes: {
-          service: serviceName
-        },
-        theme: {
-          color: '#4F46E5'
-        }
-      };
-
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
-    } catch (error) {
-      console.error('Payment Error:', error);
-      alert('Payment failed. Please try again or contact support.');
-    }
+  // WhatsApp Order Function
+  const placeOrder = (serviceName, price, quantity = 1) => {
+    const totalPrice = typeof price === 'number' ? price * quantity : price;
+    const message = `🦅 360EagleWeb - New Order\n\nService: ${serviceName}\nQuantity: ${quantity}\nTotal Price: ${totalPrice}\n\nI want to order this service. Please proceed.`;
+    const whatsappUrl = `https://wa.me/919310533973?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
-  const openPaymentModal = (serviceName: string, currentPrice: number, originalPrice: number) => {
-    const discountedPrice = Math.floor(currentPrice * 0.95); // 5% extra discount
-    setPaymentAmount(discountedPrice);
-    setOriginalAmount(currentPrice);
-    setPaymentService(serviceName);
-    setIsPaymentOpen(true);
+  // Quantity handlers
+  const increaseQuantity = (service) => {
+    setQuantities(prev => ({
+      ...prev,
+      [service]: prev[service] + 1
+    }));
   };
 
-  // Backlink Packages
-  const backlinkPackages = [
-    { 
-      name: 'EAGLE DEMO', 
-      price: '₹1', 
-      originalPrice: '₹999',
-      currentPrice: 1,
-      backlinks: '10 Premium Backlinks',
-      keywords: '1 Keyword & 1 URL',
-      duration: '3 Working Days Delivery',
-      description: 'Perfect for testing our service quality',
-      popular: false,
+  const decreaseQuantity = (service) => {
+    setQuantities(prev => ({
+      ...prev,
+      [service]: Math.max(1, prev[service] - 1)
+    }));
+  };
+
+  // Moz DA PA Packages
+  const mozPackages = [
+    {
+      id: 'mozDA25',
+      name: "Moz DA 25+",
+      price: 699,
+      originalPrice: 1499,
+      description: "Increase your Domain Authority to 25+",
       features: [
-        '10 High-Quality Do-Follow Backlinks',
-        'Premium Wiki Backlinks',
-        'Social Bookmarking Links',
-        '5 Authority Profile Links',
-        '100% Google Algorithm Safe',
-        'Fast Index Process',
-        'Perfect for Service Quality Testing',
-        'Quick 3-Day Delivery'
+        "DA Boost to 25+",
+        "High Quality Backlinks",
+        "Authority Site Links",
+        "Natural Link Profile",
+        "30 Days Completion",
+        "Detailed Report"
       ],
-      badge: 'PERFECT FOR TESTING'
+      popular: false
     },
-    { 
-      name: 'EAGLE START', 
-      price: '₹299', 
-      originalPrice: '₹999',
-      currentPrice: 299,
-      backlinks: '300 Premium Backlinks',
-      keywords: '2 Keywords & 1 URL',
-      duration: '7 Working Days Delivery',
-      description: 'Ideal for new websites needing initial ranking boost',
-      popular: false,
+    {
+      id: 'mozDA35',
+      name: "Moz DA 35+",
+      price: 799,
+      originalPrice: 1999,
+      description: "Boost Domain Authority to 35+",
       features: [
-        '300 Premium Quality Backlinks',
-        'Quality Mixed Backlinks from Multiple Sources',
-        'Do-Follow Backlinks Only',
-        'Premium Wiki Backlinks',
-        'Press Release Backlinks',
-        'Web 2.0 Property Links',
-        'Social Bookmarking Links',
-        '30 Authority Profile Links',
-        '40 Days Ping Back Service',
-        'Submit to 1020+ Search Engines'
+        "DA Boost to 35+",
+        "Premium Quality Links",
+        "Authority .edu/.gov Links",
+        "Natural Growth Pattern",
+        "45 Days Completion",
+        "White-hat Techniques"
       ],
-      badge: 'BEST FOR STARTERS'
+      popular: true
     },
-    { 
-      name: 'EAGLE PRO', 
-      price: '₹599', 
-      originalPrice: '₹1,999',
-      currentPrice: 599,
-      backlinks: '750 Premium Backlinks',
-      keywords: '2 Keywords & 2 URLs',
-      duration: '7 Working Days Delivery',
-      description: 'Most popular package for established websites',
-      popular: true,
+    {
+      id: 'mozDA40',
+      name: "Moz DA 40+",
+      price: 899,
+      originalPrice: 2499,
+      description: "Achieve 40+ Domain Authority",
       features: [
-        '750 Premium Quality Backlinks',
-        'Mixed High-Quality Backlink Profile',
-        'Do-Follow Backlinks',
-        'Premium Wiki Backlinks',
-        'Press Release Distribution',
-        'Web 2.0 Property Links',
-        'Social Bookmarking Services',
-        'Authority Profile Links',
-        'Super Fast Index Process',
-        '40 Days Ping Back Service',
-        'Submit to 1020+ Search Engines'
+        "DA Boost to 40+",
+        "Ultra Premium Links",
+        "High Authority Networks",
+        "Natural Anchor Text",
+        "60 Days Completion",
+        "Priority Support"
       ],
-      badge: 'MOST POPULAR'
-    },
-    { 
-      name: 'EAGLE BUSINESS', 
-      price: '₹899', 
-      originalPrice: '₹2,999',
-      currentPrice: 899,
-      backlinks: '1200 Premium Backlinks',
-      keywords: '3 Keywords & 2 URLs',
-      duration: '7 Working Days Delivery',
-      description: 'Comprehensive package for business growth',
-      popular: false,
-      features: [
-        '1200 Premium Quality Backlinks',
-        'Diverse Backlink Portfolio',
-        'Do-Follow Backlinks',
-        'Premium Wiki Backlinks',
-        'Press Release Campaigns',
-        'Web 2.0 Property Networks',
-        'Social Bookmarking Strategy',
-        'Authority Profile Building',
-        'Super Fast Index Process',
-        '40 Days Ping Back Service',
-        'Submit to 1020+ Search Engines'
-      ],
-      badge: 'BUSINESS GROWTH'
+      popular: false
     }
   ];
 
-  // Advanced SEO Packages
-  const advancedPackages = [
-    { 
-      name: 'EAGLE ENTERPRISE', 
-      price: '₹1,499', 
-      originalPrice: '₹4,999',
-      currentPrice: 1499,
-      backlinks: '2000+ Premium Backlinks',
-      keywords: '6 Keywords & 2 URLs',
-      duration: '10 Working Days Delivery',
-      description: 'Enterprise-level website authority building',
-      popular: false,
+  // Ahrefs DR Packages
+  const ahrefsPackages = [
+    {
+      id: 'ahrefsDR25',
+      name: "Ahrefs DR 25+",
+      price: 999,
+      originalPrice: 2499,
+      description: "Increase Domain Rating to 25+",
       features: [
-        '2000+ Premium Quality Backlinks',
-        'Enterprise-Level Backlink Diversity',
-        'Do-Follow Backlinks Strategy',
-        'Premium Wiki Backlinks Network',
-        'Professional Press Releases',
-        'Web 2.0 Property Portfolio',
-        'Social Bookmarking Campaign',
-        'Authority Profile Network',
-        'Super Fast Index Process',
-        '40 Days Ping Back Service',
-        'Submit to 1020+ Search Engines'
+        "DR Boost to 25+",
+        "Quality Referring Domains",
+        "Natural Link Velocity",
+        "Dofollow Links",
+        "30 Days Completion",
+        "Detailed Analytics"
       ],
-      badge: 'ENTERPRISE LEVEL'
+      popular: false
     },
-    { 
-      name: 'EAGLE PREMIUM', 
-      price: '₹2,999', 
-      originalPrice: '₹9,999',
-      currentPrice: 2999,
-      backlinks: '5000+ Premium Backlinks',
-      keywords: '10 Keywords & 5 URLs',
-      duration: '10 Working Days Delivery',
-      description: 'Dominating your industry search results',
-      popular: true,
+    {
+      id: 'ahrefsDR35',
+      name: "Ahrefs DR 35+",
+      price: 1499,
+      originalPrice: 3999,
+      description: "Boost Domain Rating to 35+",
       features: [
-        '5000+ Premium Quality Backlinks',
-        'Comprehensive Backlink Ecosystem',
-        'Do-Follow Backlinks Architecture',
-        'Premium Wiki Backlinks Network',
-        'Strategic Press Release Distribution',
-        'Web 2.0 Property Network',
-        'Social Bookmarking Strategy',
-        'Authority Profile System',
-        'Super Fast Index Process',
-        '40 Days Ping Back Service',
-        'Submit to 1020+ Search Engines'
+        "DR Boost to 35+",
+        "Premium Referring Domains",
+        "Authority Site Links",
+        "Natural Growth",
+        "45 Days Completion",
+        "White-hat Strategy"
       ],
-      badge: 'INDUSTRY DOMINANCE'
+      popular: true
+    },
+    {
+      id: 'ahrefsDR40',
+      name: "Ahrefs DR 40+",
+      price: 1999,
+      originalPrice: 4999,
+      description: "Achieve 40+ Domain Rating",
+      features: [
+        "DR Boost to 40+",
+        "Ultra Premium Domains",
+        "High DR Network Links",
+        "Natural Pattern",
+        "60 Days Completion",
+        "Priority Implementation"
+      ],
+      popular: false
     }
   ];
 
-  // Specialized SEO Services
-  const specializedServices = [
-    { 
-      name: 'Google Safe Backlink Audit', 
-      price: '₹1,999', 
-      originalPrice: '₹4,999',
-      currentPrice: 1999,
-      description: 'Professional audit of your existing backlink profile',
+  // Backlink Services
+  const backlinkServices = [
+    {
+      id: 'blogBacklinks',
+      name: "Blog 2.0 Backlinks",
+      pricePerUnit: 2,
+      minOrder: 50,
+      unit: "links",
+      description: "High-quality blog comment backlinks",
       features: [
-        'Complete Backlink Profile Analysis',
-        'Toxic Link Identification',
-        'Google Penalty Risk Assessment',
-        'Competitor Backlink Analysis',
-        'Link Quality Scoring',
-        'Disavow File Preparation',
-        'Recovery Strategy Development',
-        'White-hat Link Building Plan'
+        "DoFollow Blog Comments",
+        "High DA/PA Sites",
+        "Relevant Niche Blogs",
+        "Natural Anchor Text",
+        "Manual Submission",
+        "7 Days Delivery"
       ]
     },
-    { 
-      name: 'Content-Based Link Building', 
-      price: '₹3,999', 
-      originalPrice: '₹9,999',
-      currentPrice: 3999,
-      description: 'High-quality content creation for natural backlinks',
+    {
+      id: 'socialBookmarks',
+      name: "Social Bookmarking",
+      pricePerUnit: 1,
+      minOrder: 100,
+      unit: "links",
+      description: "Social bookmarking backlinks",
       features: [
-        'SEO-Optimized Article Writing',
-        'Guest Post Outreach & Placement',
-        'Industry Blog Contributions',
-        'Expert Roundup Participation',
-        'Resource Page Link Building',
-        'Broken Link Building',
-        'Content Promotion Strategy'
+        "Social Bookmark Sites",
+        "High Authority Platforms",
+        "Instant Indexing",
+        "Dofollow Links",
+        "Bulk Submission",
+        "3 Days Delivery"
       ]
     },
-    { 
-      name: 'Local SEO Backlinks', 
-      price: '₹2,499', 
-      originalPrice: '₹5,999',
-      currentPrice: 2499,
-      description: 'Local citation building for local businesses',
+    {
+      id: 'wikiBacklinks',
+      name: "Wiki Backlinks",
+      pricePerUnit: 2,
+      minOrder: 100,
+      unit: "links",
+      description: "Wikipedia-style backlinks",
       features: [
-        'Local Business Directory Submissions',
-        'Google Business Profile Optimization',
-        'Local Citation Building',
-        'Geo-Targeted Backlink Strategy',
-        'Local News Site Outreach',
-        'Community Website Links',
-        'Map Pack Optimization'
-      ]
-    },
-    { 
-      name: 'Technical SEO Audit', 
-      price: '₹2,999', 
-      originalPrice: '₹6,999',
-      currentPrice: 2999,
-      description: 'Comprehensive technical SEO analysis',
-      features: [
-        'Website Crawl Analysis',
-        'Indexation Issues Identification',
-        'Site Speed Optimization Review',
-        'Mobile-Friendliness Audit',
-        'Structured Data Implementation',
-        'XML Sitemap Optimization',
-        'Core Web Vitals Optimization'
+        "Wiki Site Backlinks",
+        "High Trust Flow",
+        "Editorial Links",
+        "Natural Context",
+        "Manual Placement",
+        "5 Days Delivery"
       ]
     }
   ];
 
-  // Monthly SEO Services
-  const monthlyServices = [
-    { 
-      name: 'Monthly SEO Performance Tracking', 
-      price: '₹2,999/month', 
-      originalPrice: '₹6,999',
-      currentPrice: 2999,
-      duration: 'Minimum 3 months commitment',
-      description: 'Ongoing SEO performance monitoring and optimization',
-      popular: true,
+  // GMB Services
+  const gmbServices = [
+    {
+      id: 'gmbSetup',
+      name: "GMB Profile Setup",
+      price: 2500,
+      description: "Complete Google My Business profile setup",
       features: [
-        'Monthly Ranking Reports',
-        'Organic Traffic Analysis',
-        'Backlink Growth Monitoring',
-        'Competitor Performance Tracking',
-        'Conversion Rate Optimization',
-        'Technical SEO Health Checks',
-        'Content Performance Analysis',
-        'Google Algorithm Updates Monitoring',
-        'Performance Recommendations',
-        'Strategy Adjustments'
-      ],
-      badge: 'RECOMMENDED'
+        "Business Profile Creation",
+        "Category Optimization",
+        "Business Description",
+        "Photo Optimization",
+        "Contact Details Setup",
+        "Business Hours Setup",
+        "Products/Services Listing",
+        "Initial Review Setup"
+      ]
     },
-    { 
-      name: 'Keyword Research & Strategy', 
-      price: '₹1,999/month', 
-      originalPrice: '₹4,999',
-      currentPrice: 1999,
-      duration: 'Monthly service',
-      description: 'Continuous keyword research and targeting strategy',
-      popular: false,
+    {
+      id: 'gmbRanking',
+      name: "GMB Ranking",
+      price: 5000,
+      description: "Monthly GMB ranking and optimization",
       features: [
-        'Competitor Keyword Analysis',
-        'Search Volume & Difficulty Analysis',
-        'Long-tail Keyword Identification',
-        'Buyer Intent Keyword Mapping',
-        'Seasonal Keyword Planning',
-        'Local Keyword Research',
-        'Keyword Gap Analysis',
-        'Content Opportunity Identification'
-      ],
-      badge: 'STRATEGIC'
+        "Local SEO Optimization",
+        "Citation Building",
+        "Review Management",
+        "Regular Posts Updates",
+        "Photo Updates",
+        "Q&A Management",
+        "Performance Tracking",
+        "Monthly Report"
+      ]
     }
   ];
 
-  // Add-ons & Extra Services
-  const addOns = [
-    { 
-      name: 'Extra URL Targeting', 
-      price: '₹199/URL', 
-      currentPrice: 199,
-      description: 'Additional URL targeting in your package',
-      category: 'targeting'
+  // Website Services
+  const websiteServices = [
+    {
+      id: 'landingPage',
+      name: "Landing Page",
+      price: 2000,
+      description: "Single high-converting landing page",
+      features: [
+        "Custom Design",
+        "Mobile Responsive",
+        "SEO Optimized",
+        "Contact Form",
+        "Social Media Integration",
+        "Basic SEO Setup",
+        "1 Page Delivery",
+        "3 Days Completion"
+      ]
     },
-    { 
-      name: 'Extra Keyword Optimization', 
-      price: '₹99/keyword', 
-      currentPrice: 99,
-      description: 'Additional keyword optimization',
-      category: 'keywords'
-    },
-    { 
-      name: 'Priority Delivery', 
-      price: '₹499', 
-      currentPrice: 499,
-      description: 'Get your order delivered in 3 days instead of 7',
-      category: 'delivery'
-    },
-    { 
-      name: 'Free SEO Consultation', 
-      price: '₹999', 
-      currentPrice: 10,
-      description: '30-min Professional SEO & Backlink Consultation',
-      category: 'consultation',
+    {
+      id: 'website4Page',
+      name: "4-5 Page Website",
+      price: 5000,
+      description: "Complete business website with 4-5 pages",
+      features: [
+        "4-5 Custom Pages",
+        "Mobile Responsive Design",
+        "SEO Optimized",
+        "Contact Forms",
+        "Social Media Integration",
+        "Basic SEO Setup",
+        "Google Analytics",
+        "7 Days Completion"
+      ]
     }
   ];
 
-  const calculateDiscount = (currentPrice: number, originalPrice: number) => {
-    return Math.round((1 - currentPrice / originalPrice) * 100);
+  // Stats
+  const stats = [
+    { number: "1500+", label: "Happy Clients", icon: "😊" },
+    { number: "98%", label: "Success Rate", icon: "📈" },
+    { number: "24/7", label: "Customer Support", icon: "🛡️" },
+    { number: "100%", label: "White-hat SEO", icon: "✅" }
+  ];
+
+  // Calculate total price for backlink services
+  const calculateBacklinkPrice = (service) => {
+    const quantity = quantities[service.id];
+    return quantity * service.pricePerUnit;
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <Helmet>
-        <title>Backlink Services Pricing | Premium Packages from ₹1 - 360EagleWeb</title>
-        <meta
-          name="description"
-          content="Affordable backlink packages: EAGLE DEMO ₹1, EAGLE START ₹299, EAGLE PRO ₹599. Premium dofollow backlinks with 70% OFF + 5% Extra on Advance Payment."
-        />
+        <title>SEO Services Pricing | Moz DA, Ahrefs DR, Backlinks - 360EagleWeb</title>
         <meta 
-          name="keywords" 
-          content="backlink pricing, SEO packages cost, dofollow backlinks price, affordable backlinks, premium backlink services, 360EagleWeb pricing"
+          name="description" 
+          content="Affordable SEO services: Moz DA increase from ₹699, Ahrefs DR boost from ₹999, Backlinks from ₹1. GMB setup ₹2500, Websites from ₹2000."
         />
-        <link rel="canonical" href="https://360eagleweb.com/pricing" />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
-              🦅 Premium Backlink Services
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Backlink Services <span className="text-yellow-400">Pricing</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
-              Premium Dofollow Backlink Packages at 70% OFF + 5% Extra on Advance Payment
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 text-blue-100">
-              <div className="flex items-center space-x-2">
-                <Check className="h-5 w-5 text-green-400" />
-                <span>70% Discount on All Packages</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Check className="h-5 w-5 text-green-400" />
-                <span>5% Extra OFF on Advance Payment</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Check className="h-5 w-5 text-green-400" />
-                <span>100% Google Safe Techniques</span>
-              </div>
-            </div>
+      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-700 text-white py-20 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
+            🦅 Premium SEO Services
           </div>
-        </div>
-      </section>
-
-      {/* Backlink Packages Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Premium Backlink Packages
-            </h2>
-            <p className="text-xl text-gray-600">
-              Choose the Perfect Package for Your Website's Needs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {backlinkPackages.map((service, index) => (
-              <div key={index} className={`relative bg-white rounded-2xl shadow-xl border-2 ${
-                service.popular ? 'border-yellow-400 transform hover:scale-105' : 'border-gray-200'
-              } transition-all duration-300`}>
-                {service.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-current" />
-                      <span>{service.badge}</span>
-                    </span>
-                  </div>
-                )}
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{service.name}</h3>
-                  <p className="text-blue-600 font-semibold text-sm mb-1">{service.backlinks}</p>
-                  <p className="text-gray-600 text-xs mb-3">{service.keywords}</p>
-                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                  
-                  <div className="mb-6 text-center">
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-3xl font-bold text-blue-600">{service.price}</span>
-                      <span className="text-lg text-gray-400 line-through ml-2">{service.originalPrice}</span>
-                    </div>
-                    <p className="text-sm text-gray-500 mt-1">{service.duration}</p>
-                    <div className="mt-2">
-                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        SAVE {calculateDiscount(service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}%
-                      </span>
-                    </div>
-                    {service.currentPrice > 1 && (
-                      <div className="mt-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        Advance: ₹{Math.floor(service.currentPrice * 0.95).toLocaleString()} (5% OFF)
-                      </div>
-                    )}
-                  </div>
-
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-2 text-sm">
-                        <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="space-y-2">
-                    {service.currentPrice > 1 ? (
-                      <button
-                        onClick={() => openPaymentModal(service.name, service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}
-                        className={`w-full py-2 px-4 rounded-lg font-semibold transition-all block text-center text-sm ${
-                          service.popular
-                            ? 'bg-yellow-500 hover:bg-yellow-600 text-blue-900'
-                            : 'bg-blue-600 hover:bg-blue-700 text-white'
-                        }`}
-                      >
-                        💳 Pay Advance - Save 5%
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => openPaymentModal(service.name, service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-semibold transition-all block text-center text-sm"
-                      >
-                        🚀 Try Demo - ₹1 Only
-                      </button>
-                    )}
-                  </div>
-                </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Affordable <span className="text-yellow-400">SEO Pricing</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
+            Premium SEO Services at Unbeatable Prices. Boost Your Rankings Today!
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-6 mb-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 min-w-[140px]">
+                <div className="text-2xl mb-2">{stat.icon}</div>
+                <div className="text-2xl font-bold text-yellow-400">{stat.number}</div>
+                <div className="text-blue-100 text-sm">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Advanced Packages Section */}
+      {/* Backlink Services Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              🔗 PREMIUM BACKLINKS
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Advanced SEO Packages
+              Buy Quality Backlinks
             </h2>
-            <p className="text-xl text-gray-600">
-              High-Volume Backlink Packages for Maximum Impact
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Affordable backlink packages - Increase quantity to get more links!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {advancedPackages.map((service, index) => (
-              <div key={index} className={`relative bg-white rounded-2xl shadow-xl border-2 ${
-                service.popular ? 'border-yellow-400 transform hover:scale-105' : 'border-gray-200'
-              } transition-all duration-300`}>
-                {service.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-current" />
-                      <span>{service.badge}</span>
-                    </span>
-                  </div>
-                )}
-                
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {backlinkServices.map((service) => (
+              <div 
+                key={service.id} 
+                className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-xl border-2 border-purple-200 hover:shadow-2xl transition-all duration-300"
+              >
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.name}</h3>
-                  <p className="text-blue-600 font-semibold text-lg mb-1">{service.backlinks}</p>
-                  <p className="text-gray-600 mb-4">{service.keywords}</p>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">{service.name}</h3>
+                  <p className="text-gray-600 text-center mb-4">{service.description}</p>
                   
-                  <div className="mb-6 text-center">
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-4xl font-bold text-blue-600">{service.price}</span>
-                      <span className="text-lg text-gray-400 line-through ml-2">{service.originalPrice}</span>
+                  {/* Quantity Controls */}
+                  <div className="bg-purple-100 rounded-lg p-4 mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-purple-800">Quantity ({service.unit}):</span>
+                      <div className="flex items-center space-x-3">
+                        <button
+                          onClick={() => decreaseQuantity(service.id)}
+                          className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="text-lg font-bold text-purple-700 w-8 text-center">
+                          {quantities[service.id]}
+                        </span>
+                        <button
+                          onClick={() => increaseQuantity(service.id)}
+                          className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-500 mt-1">{service.duration}</p>
-                    <div className="mt-2">
-                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        SAVE {calculateDiscount(service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}%
-                      </span>
-                    </div>
-                    <div className="mt-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      Advance: ₹{Math.floor(service.currentPrice * 0.95).toLocaleString()} (5% OFF)
+                    
+                    <div className="text-center">
+                      <div className="text-sm text-purple-700 mb-1">
+                        ₹{service.pricePerUnit} per {service.unit}
+                      </div>
+                      <div className="text-2xl font-bold text-purple-600">
+                        ₹{calculateBacklinkPrice(service).toLocaleString()}
+                      </div>
+                      <div className="text-sm text-purple-600 mt-1">
+                        {quantities[service.id]} {service.unit} × ₹{service.pricePerUnit}
+                      </div>
                     </div>
                   </div>
 
                   <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-3">
+                    {service.features.map((feature, index) => (
+                      <li key={index} className="flex items-start space-x-3">
                         <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => openPaymentModal(service.name, service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}
-                      className={`w-full py-3 px-6 rounded-lg font-semibold transition-all block text-center ${
-                        service.popular
-                          ? 'bg-yellow-500 hover:bg-yellow-600 text-blue-900'
-                          : 'bg-blue-600 hover:bg-blue-700 text-white'
-                      }`}
-                    >
-                      💳 Pay Advance - Save 5%
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Specialized Services Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Specialized SEO Services
-            </h2>
-            <p className="text-xl text-gray-600">
-              Targeted SEO Solutions for Specific Requirements
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {specializedServices.map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900">{service.name}</h3>
-                  {service.originalPrice && (
-                    <span className="text-sm text-gray-400 line-through">{service.originalPrice}</span>
-                  )}
-                </div>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                
-                <ul className="space-y-2 mb-4">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-2 text-sm text-gray-700">
-                      <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-blue-600">{service.price}</span>
-                  <div className="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">
-                    SAVE {calculateDiscount(service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}%
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
                   <button
-                    onClick={() => openPaymentModal(service.name, service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors block text-center"
+                    onClick={() => placeOrder(service.name, calculateBacklinkPrice(service), quantities[service.id])}
+                    className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
                   >
-                    💳 Pay Advance - Save 5%
+                    🔗 Order {quantities[service.id]} {service.unit} - ₹{calculateBacklinkPrice(service).toLocaleString()}
                   </button>
                 </div>
               </div>
@@ -629,64 +403,104 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Monthly Services Section */}
-      <section className="py-16 bg-white">
+      {/* Moz DA PA Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              🔥 MOZ DOMAIN AUTHORITY
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Monthly SEO Services
+              Increase Moz DA
             </h2>
-            <p className="text-xl text-gray-600">
-              Ongoing SEO Management and Performance Tracking
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Boost your website's Domain Authority with our premium link building services
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {monthlyServices.map((service, index) => (
-              <div key={index} className={`relative bg-white rounded-2xl shadow-xl border-2 ${
-                service.popular ? 'border-yellow-400' : 'border-gray-200'
-              } hover:shadow-xl transition-shadow`}>
-                {service.popular && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {mozPackages.map((pkg) => (
+              <div 
+                key={pkg.id} 
+                className={`relative bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border-2 ${
+                  pkg.popular ? 'border-yellow-400 transform hover:scale-105' : 'border-blue-200'
+                } transition-all duration-300 hover:shadow-2xl`}
+              >
+                {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-500 text-blue-900 px-4 py-2 rounded-full text-sm font-bold">
-                      {service.badge}
+                    <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-1">
+                      <Star className="h-4 w-4 fill-current" />
+                      <span>MOST POPULAR</span>
                     </span>
                   </div>
                 )}
                 
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.name}</h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">{pkg.name}</h3>
+                  <p className="text-gray-600 text-center mb-6">{pkg.description}</p>
                   
-                  <div className="flex items-baseline mb-6">
-                    <span className="text-4xl font-bold text-blue-600">{service.price}</span>
-                    <span className="text-lg text-gray-400 line-through ml-2">{service.originalPrice}</span>
-                    <div className="ml-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      SAVE {calculateDiscount(service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}%
+                  {/* Quantity Controls for Moz */}
+                  <div className="flex items-center justify-center mb-6 space-x-4">
+                    <span className="text-sm font-medium text-gray-700">Quantity:</span>
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => decreaseQuantity(pkg.id)}
+                        className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="text-lg font-bold text-blue-700 w-8 text-center">
+                        {quantities[pkg.id]}
+                      </span>
+                      <button
+                        onClick={() => increaseQuantity(pkg.id)}
+                        className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
                     </div>
                   </div>
 
+                  <div className="text-center mb-6">
+                    <div className="flex items-baseline justify-center space-x-2">
+                      <span className="text-4xl font-bold text-blue-600">
+                        ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                      </span>
+                      <span className="text-lg text-gray-400 line-through">
+                        ₹{(pkg.originalPrice * quantities[pkg.id]).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        SAVE {Math.round((1 - pkg.price / pkg.originalPrice) * 100)}%
+                      </span>
+                    </div>
+                    {quantities[pkg.id] > 1 && (
+                      <div className="text-sm text-blue-600 mt-2">
+                        {quantities[pkg.id]} packages × ₹{pkg.price}
+                      </div>
+                    )}
+                  </div>
+
                   <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-3">
+                    {pkg.features.map((feature, index) => (
+                      <li key={index} className="flex items-start space-x-3">
                         <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => openPaymentModal(service.name, service.currentPrice, parseInt(service.originalPrice.replace(/[^0-9]/g, '')))}
-                      className={`w-full py-3 px-6 rounded-lg font-semibold transition-all block text-center ${
-                        service.popular
-                          ? 'bg-yellow-500 hover:bg-yellow-600 text-blue-900'
-                          : 'bg-blue-600 hover:bg-blue-700 text-white'
-                      }`}
-                    >
-                      💳 Pay Advance - Save 5%
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => placeOrder(pkg.name, pkg.price * quantities[pkg.id], quantities[pkg.id])}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 ${
+                      pkg.popular
+                        ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900'
+                        : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white'
+                    }`}
+                  >
+                    🚀 Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                  </button>
                 </div>
               </div>
             ))}
@@ -694,52 +508,104 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Add-ons Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Ahrefs DR Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              📈 AHREFS DOMAIN RATING
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Add-on Services
+              Increase Ahrefs DR
             </h2>
-            <p className="text-xl text-gray-600">
-              Enhance Your Package with These Additional Services
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Improve your Domain Rating with high-quality backlink campaigns
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {addOns.map((addon, index) => (
-              <div key={index} className={`bg-gray-50 p-6 rounded-xl border-2 ${
-                addon.name === 'Free SEO Consultation' ? 'border-green-300 bg-green-50' : 'border-gray-200'
-              } hover:border-blue-300 transition-colors`}>
-                {addon.name === 'Free SEO Consultation' && (
-                  <div className="inline-block bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-3">
-                    🎯 FREE CONSULTATION
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {ahrefsPackages.map((pkg) => (
+              <div 
+                key={pkg.id} 
+                className={`relative bg-gradient-to-br from-white to-green-50 rounded-2xl shadow-xl border-2 ${
+                  pkg.popular ? 'border-yellow-400 transform hover:scale-105' : 'border-green-200'
+                } transition-all duration-300 hover:shadow-2xl`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-6 py-2 rounded-full text-sm font-bold flex items-center space-x-1">
+                      <Star className="h-4 w-4 fill-current" />
+                      <span>BEST VALUE</span>
+                    </span>
                   </div>
                 )}
                 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{addon.name}</h3>
-                <p className="text-gray-600 text-sm mb-4">{addon.description}</p>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold text-blue-600">{addon.price}</span>
-                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">{pkg.name}</h3>
+                  <p className="text-gray-600 text-center mb-6">{pkg.description}</p>
+                  
+                  {/* Quantity Controls for Ahrefs */}
+                  <div className="flex items-center justify-center mb-6 space-x-4">
+                    <span className="text-sm font-medium text-gray-700">Quantity:</span>
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => decreaseQuantity(pkg.id)}
+                        className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="text-lg font-bold text-green-700 w-8 text-center">
+                        {quantities[pkg.id]}
+                      </span>
+                      <button
+                        onClick={() => increaseQuantity(pkg.id)}
+                        className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
 
-                <div className="space-y-2">
-                  {addon.name === 'Free SEO Consultation' ? (
-                    <button
-                      onClick={() => openPaymentModal(addon.name, addon.currentPrice, 999)}
-                      className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg font-medium transition-colors block text-center text-sm"
-                    >
-                      💳 Pay ₹10 & Schedule
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => openPaymentModal(addon.name, addon.currentPrice, addon.currentPrice * 2)}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors block text-center text-sm"
-                    >
-                      💳 Pay Now
-                    </button>
-                  )}
+                  <div className="text-center mb-6">
+                    <div className="flex items-baseline justify-center space-x-2">
+                      <span className="text-4xl font-bold text-green-600">
+                        ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                      </span>
+                      <span className="text-lg text-gray-400 line-through">
+                        ₹{(pkg.originalPrice * quantities[pkg.id]).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                        SAVE {Math.round((1 - pkg.price / pkg.originalPrice) * 100)}%
+                      </span>
+                    </div>
+                    {quantities[pkg.id] > 1 && (
+                      <div className="text-sm text-green-600 mt-2">
+                        {quantities[pkg.id]} packages × ₹{pkg.price}
+                      </div>
+                    )}
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {pkg.features.map((feature, index) => (
+                      <li key={index} className="flex items-start space-x-3">
+                        <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => placeOrder(pkg.name, pkg.price * quantities[pkg.id], quantities[pkg.id])}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 ${
+                      pkg.popular
+                        ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900'
+                        : 'bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white'
+                    }`}
+                  >
+                    📈 Order {quantities[pkg.id] > 1 ? `${quantities[pkg.id]} Packages` : 'Now'} - ₹{(pkg.price * quantities[pkg.id]).toLocaleString()}
+                  </button>
                 </div>
               </div>
             ))}
@@ -747,80 +613,78 @@ const Pricing = () => {
         </div>
       </section>
 
+      {/* Other Services Sections (GMB & Website) - Similar pattern */}
       {/* Final CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Boost Your Rankings?
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Boost Your Online Presence?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Get Premium Backlink Services at 70% OFF + 5% Extra on Advance Payment!
+          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+            Get premium SEO services at unbeatable prices. Order now and see your rankings soar!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => openPaymentModal('EAGLE PRO Package', 599, 1999)}
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2"
+              onClick={() => placeOrder('Consultation', 'FREE')}
+              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center space-x-2"
             >
-              <span>💳 Get Started with EAGLE PRO</span>
+              <span>📞 FREE Consultation</span>
+              <ArrowRight className="h-5 w-5" />
             </button>
-            <button
-              onClick={() => openPaymentModal('EAGLE DEMO Package', 1, 999)}
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2"
+            
+            <a
+              href="https://wa.me/919310533973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center space-x-2"
             >
-              <span>🚀 Try Demo for ₹1</span>
-            </button>
+              <span>💬 Chat on WhatsApp</span>
+              <ArrowRight className="h-5 w-5" />
+            </a>
           </div>
-          <p className="text-blue-200 mt-8 text-lg">
-            🚀 Limited Time Offer - Book Your Package Today!
-          </p>
         </div>
       </section>
 
-      {/* Payment Modal */}
-      {isPaymentOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-md w-full">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Confirm Payment</h3>
-            <div className="space-y-3 mb-6">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Service:</span>
-                <span className="font-semibold">{paymentService}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Original Price:</span>
-                <span className="text-gray-400 line-through">₹{originalAmount.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Advance Payment (5% OFF):</span>
-                <span className="text-green-600 font-bold">₹{paymentAmount.toLocaleString()}</span>
-              </div>
-              <div className="border-t pt-3">
-                <div className="flex justify-between text-lg font-bold">
-                  <span>Total to Pay:</span>
-                  <span className="text-blue-600">₹{paymentAmount.toLocaleString()}</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex space-x-3">
-              <button
-                onClick={() => setIsPaymentOpen(false)}
-                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 px-4 rounded-lg font-medium transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  setIsPaymentOpen(false);
-                  handlePayment(paymentAmount, paymentService);
-                }}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
-              >
-                💳 Pay Now
-              </button>
-            </div>
-          </div>
+      {/* Mobile Bottom Navigation */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+        <div className="flex justify-around items-center py-3">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-blue-600"
+          >
+            <span className="text-lg">🏠</span>
+            <span className="text-xs font-medium">Home</span>
+          </button>
+
+          <button
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">🔍</span>
+            <span className="text-xs font-medium">Search</span>
+          </button>
+
+          <button
+            onClick={() => placeOrder('Blog Backlinks', calculateBacklinkPrice(backlinkServices[0]), quantities.blogBacklinks)}
+            className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
+          >
+            <span className="text-lg">🛒</span>
+            <span className="text-xs font-medium">Add to Cart</span>
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              ₹{calculateBacklinkPrice(backlinkServices[0])}
+            </span>
+          </button>
+
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">💰</span>
+            <span className="text-xs font-medium">Pricing</span>
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 };

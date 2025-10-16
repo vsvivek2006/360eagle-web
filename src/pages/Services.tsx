@@ -2,407 +2,292 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { 
-  Search, 
+  Link2, 
   TrendingUp, 
-  Link2,
-  FileText,
+  Globe, 
   Users,
+  FileText,
+  MapPin,
   Zap,
   ArrowRight,
   Star,
-  Globe,
   Shield,
-  BarChart3,
-  Target,
-  Rocket,
   CheckCircle,
+  Rocket,
+  Target,
   Award,
-  Clock,
-  Heart
+  BarChart3,
+  ShoppingCart
 } from 'lucide-react';
 
 const Services = () => {
-  // ✅ SERVICES ARRAY FOCUSED ON BACKLINK & SEO SERVICES
+  // ✅ SERVICES ARRAY EXACTLY MATCHING PRICING PAGE
   const serviceCategories = [
     {
-      title: 'Premium Backlink Services',
+      title: '🔗 PREMIUM BACKLINKS',
       icon: <Link2 className="h-12 w-12" />,
-      description: 'High-quality dofollow backlink packages to boost your website rankings and authority',
-      services: [
-        {
-          icon: <Rocket className="h-8 w-8" />,
-          name: 'EAGLE DEMO Package',
-          description: 'Perfect for testing our service quality with 10 premium backlinks',
-          features: [
-            '10 High-Quality Do-Follow Backlinks',
-            'Premium Wiki Backlinks',
-            'Social Bookmarking Links',
-            '5 Authority Profile Links',
-            'Delivery Within 3 Working Days',
-            '100% Google Algorithm Safe',
-            'Fast Index Process',
-            'Perfect for Service Quality Testing'
-          ],
-          benefits: [
-            'Test service quality risk-free',
-            'Quick results in 3 days',
-            'Google safe techniques',
-            'Affordable starting point'
-          ]
-        },
-        {
-          icon: <Target className="h-8 w-8" />,
-          name: 'EAGLE START Package',
-          description: '300 premium backlinks for new websites needing initial ranking boost',
-          features: [
-            '300 Premium Quality Backlinks',
-            'SEO For 2 Keywords & 1 URL',
-            'Quality Mixed Backlinks from Multiple Sources',
-            'Do-Follow Backlinks Only',
-            'Premium Wiki Backlinks',
-            'Press Release Backlinks',
-            'Web 2.0 Property Links',
-            'Social Bookmarking Links',
-            '30 Authority Profile Links',
-            'Delivery Within 7 Working Days'
-          ],
-          benefits: [
-            'Strong foundation building',
-            'Multiple backlink types',
-            'Quick 7-day delivery',
-            'Safe for new websites'
-          ]
-        },
-        {
-          icon: <Zap className="h-8 w-8" />,
-          name: 'EAGLE PRO Package',
-          description: '750 premium backlinks for established websites wanting faster growth',
-          features: [
-            '750 Premium Quality Backlinks',
-            'SEO For 2 Keywords & 2 URLs',
-            'Mixed High-Quality Backlink Profile',
-            'Do-Follow Backlinks',
-            'Premium Wiki Backlinks',
-            'Press Release Distribution',
-            'Web 2.0 Property Links',
-            'Social Bookmarking Services',
-            'Authority Profile Links',
-            'Delivery Within 7 Working Days',
-            '40 Days Ping Back Service'
-          ],
-          benefits: [
-            'Rapid ranking improvement',
-            'Comprehensive link profile',
-            'Multiple URL targeting',
-            'Extended ping service'
-          ]
-        },
-        {
-          icon: <Award className="h-8 w-8" />,
-          name: 'EAGLE BUSINESS Package',
-          description: '1200 premium backlinks for serious business growth and authority',
-          features: [
-            '1200 Premium Quality Backlinks',
-            'SEO For 3 Keywords & 2 URLs',
-            'Diverse Backlink Portfolio',
-            'Do-Follow Backlinks',
-            'Premium Wiki Backlinks',
-            'Press Release Campaigns',
-            'Web 2.0 Property Networks',
-            'Social Bookmarking Strategy',
-            'Authority Profile Building',
-            'Delivery Within 7 Working Days',
-            'Submit to 1020+ Search Engines'
-          ],
-          benefits: [
-            'Business-level authority',
-            'Multiple keyword targeting',
-            'Wide search engine coverage',
-            'Professional results'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Advanced SEO Packages',
-      icon: <TrendingUp className="h-12 w-12" />,
-      description: 'Comprehensive SEO packages with high-volume backlinks for maximum impact',
-      services: [
-        {
-          icon: <BarChart3 className="h-8 w-8" />,
-          name: 'EAGLE ENTERPRISE Package',
-          description: '2000+ premium backlinks for enterprise-level website authority',
-          features: [
-            '2000+ Premium Quality Backlinks',
-            'SEO For 6 Keywords & 2 URLs',
-            'Enterprise-Level Backlink Diversity',
-            'Do-Follow Backlinks Strategy',
-            'Premium Wiki Backlinks Network',
-            'Professional Press Releases',
-            'Web 2.0 Property Portfolio',
-            'Social Bookmarking Campaign',
-            'Authority Profile Network',
-            'Delivery Within 10 Working Days',
-            'Super Fast Index Process'
-          ],
-          benefits: [
-            'Enterprise authority building',
-            'Multiple keyword clusters',
-            'Faster indexing',
-            'Professional campaign management'
-          ]
-        },
-        {
-          icon: <Globe className="h-8 w-8" />,
-          name: 'EAGLE PREMIUM Package',
-          description: '5000+ premium backlinks for dominating your industry search results',
-          features: [
-            '5000+ Premium Quality Backlinks',
-            'SEO For 10 Keywords & 5 URLs',
-            'Comprehensive Backlink Ecosystem',
-            'Do-Follow Backlinks Architecture',
-            'Premium Wiki Backlinks Network',
-            'Strategic Press Release Distribution',
-            'Web 2.0 Property Network',
-            'Social Bookmarking Strategy',
-            'Authority Profile System',
-            'Delivery Within 10 Working Days',
-            '40 Days Ping Back Service'
-          ],
-          benefits: [
-            'Industry dominance',
-            'Multiple URL optimization',
-            'Comprehensive coverage',
-            'Long-term ping benefits'
-          ]
-        },
-        {
-          icon: <Shield className="h-8 w-8" />,
-          name: 'Google Safe Backlink Audit',
-          description: 'Professional audit of your existing backlink profile for safety and optimization',
-          features: [
-            'Complete Backlink Profile Analysis',
-            'Toxic Link Identification',
-            'Google Penalty Risk Assessment',
-            'Competitor Backlink Analysis',
-            'Link Quality Scoring',
-            'Disavow File Preparation',
-            'Recovery Strategy Development',
-            'White-hat Link Building Plan',
-            'Monthly Monitoring Setup',
-            'Risk Mitigation Recommendations'
-          ],
-          benefits: [
-            'Google penalty prevention',
-            'Clean backlink profile',
-            'Competitor insights',
-            'Safe growth strategy'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Specialized Link Building',
-      icon: <Users className="h-12 w-12" />,
-      description: 'Targeted link building strategies for specific industries and requirements',
+      description: 'Buy Quality Backlinks - Affordable backlink packages with quantity options',
       services: [
         {
           icon: <FileText className="h-8 w-8" />,
-          name: 'Content-Based Link Building',
-          description: 'High-quality content creation and placement for natural backlink acquisition',
+          name: 'Blog 2.0 Backlinks',
+          description: 'High-quality blog comment backlinks with minimum 50 links order',
           features: [
-            'SEO-Optimized Article Writing',
-            'Guest Post Outreach & Placement',
-            'Industry Blog Contributions',
-            'Expert Roundup Participation',
-            'Resource Page Link Building',
-            'Broken Link Building',
-            'Skyscraper Technique Implementation',
-            'Content Promotion Strategy',
-            'Relationship Building with Publishers',
-            'Natural Link Acquisition'
+            'DoFollow Blog Comments',
+            'High DA/PA Sites',
+            'Relevant Niche Blogs',
+            'Natural Anchor Text',
+            'Manual Submission',
+            '7 Days Delivery'
           ],
-          benefits: [
-            'Natural link profile',
-            'High-quality referrals',
-            'Industry authority',
-            'Sustainable growth'
-          ]
+          startingPrice: '₹100 (50 links)',
+          priceNote: '₹2 per link - Minimum 50 links'
         },
         {
-          icon: <Heart className="h-8 w-8" />,
-          name: 'Local SEO Backlinks',
-          description: 'Local citation building and geo-targeted backlinks for local businesses',
+          icon: <Users className="h-8 w-8" />,
+          name: 'Social Bookmarking',
+          description: 'Social bookmarking backlinks with minimum 100 links order',
           features: [
-            'Local Business Directory Submissions',
-            'Google Business Profile Optimization',
-            'Local Citation Building',
-            'Geo-Targeted Backlink Strategy',
-            'Local News Site Outreach',
-            'Community Website Links',
-            'Local Blog Features',
-            'Map Pack Optimization',
-            'Local Review Management',
-            'Neighborhood Business Networks'
+            'Social Bookmark Sites',
+            'High Authority Platforms',
+            'Instant Indexing',
+            'Dofollow Links',
+            'Bulk Submission',
+            '3 Days Delivery'
           ],
-          benefits: [
-            'Local search dominance',
-            'Map pack visibility',
-            'Community trust building',
-            'Local customer acquisition'
-          ]
+          startingPrice: '₹100 (100 links)',
+          priceNote: '₹1 per link - Minimum 100 links'
         },
         {
-          icon: <Clock className="h-8 w-8" />,
-          name: 'Authority Building Service',
-          description: 'Long-term authority building through high-DA backlinks and brand mentions',
+          icon: <Globe className="h-8 w-8" />,
+          name: 'Wiki Backlinks',
+          description: 'Wikipedia-style backlinks with minimum 100 links order',
           features: [
-            'High DA/PA Backlink Acquisition',
-            'Brand Mention Campaigns',
-            'Industry Authority Site Links',
-            'Educational Institution Links',
-            'Government Website Outreach',
-            'News Site Coverage',
-            'Industry Award Submissions',
-            'Expert Profile Building',
-            'Thought Leadership Development',
-            'Long-term Authority Strategy'
+            'Wiki Site Backlinks',
+            'High Trust Flow',
+            'Editorial Links',
+            'Natural Context',
+            'Manual Placement',
+            '5 Days Delivery'
           ],
-          benefits: [
-            'Domain authority boost',
-            'Industry recognition',
-            'Trust signal establishment',
-            'Long-term ranking stability'
-          ]
+          startingPrice: '₹200 (100 links)',
+          priceNote: '₹2 per link - Minimum 100 links'
         }
       ]
     },
     {
-      title: 'Additional SEO Services',
-      icon: <Search className="h-12 w-12" />,
-      description: 'Complementary SEO services to enhance your overall search engine performance',
+      title: '🔥 MOZ DOMAIN AUTHORITY',
+      icon: <TrendingUp className="h-12 w-12" />,
+      description: 'Increase Moz DA - Boost your website\'s Domain Authority with premium link building',
       services: [
         {
-          icon: <CheckCircle className="h-8 w-8" />,
-          name: 'Technical SEO Audit',
-          description: 'Comprehensive technical SEO analysis and optimization recommendations',
+          icon: <Zap className="h-8 w-8" />,
+          name: 'Moz DA 25+',
+          description: 'Increase your Domain Authority to 25+ with high-quality backlinks',
           features: [
-            'Website Crawl Analysis',
-            'Indexation Issues Identification',
-            'Site Speed Optimization Review',
-            'Mobile-Friendliness Audit',
-            'Structured Data Implementation',
-            'XML Sitemap Optimization',
-            'Robots.txt Analysis',
-            'Canonical Issues Resolution',
-            'HTTPS & Security Audit',
-            'Core Web Vitals Optimization'
+            'DA Boost to 25+',
+            'High Quality Backlinks',
+            'Authority Site Links',
+            'Natural Link Profile',
+            '30 Days Completion',
+            'Detailed Report'
           ],
-          benefits: [
-            'Technical issue resolution',
-            'Better crawl efficiency',
-            'Improved user experience',
-            'Higher quality scores'
-          ]
+          startingPrice: '₹699',
+          priceNote: 'Original: ₹1,499 - Save 53%',
+          popular: false
+        },
+        {
+          icon: <Target className="h-8 w-8" />,
+          name: 'Moz DA 35+',
+          description: 'Boost Domain Authority to 35+ with premium quality links',
+          features: [
+            'DA Boost to 35+',
+            'Premium Quality Links',
+            'Authority .edu/.gov Links',
+            'Natural Growth Pattern',
+            '45 Days Completion',
+            'White-hat Techniques'
+          ],
+          startingPrice: '₹799',
+          priceNote: 'Original: ₹1,999 - Save 60%',
+          popular: true
+        },
+        {
+          icon: <Award className="h-8 w-8" />,
+          name: 'Moz DA 40+',
+          description: 'Achieve 40+ Domain Authority with ultra premium links',
+          features: [
+            'DA Boost to 40+',
+            'Ultra Premium Links',
+            'High Authority Networks',
+            'Natural Anchor Text',
+            '60 Days Completion',
+            'Priority Support'
+          ],
+          startingPrice: '₹899',
+          priceNote: 'Original: ₹2,499 - Save 64%',
+          popular: false
+        }
+      ]
+    },
+    {
+      title: '📈 AHREFS DOMAIN RATING',
+      icon: <BarChart3 className="h-12 w-12" />,
+      description: 'Increase Ahrefs DR - Improve your Domain Rating with high-quality campaigns',
+      services: [
+        {
+          icon: <Rocket className="h-8 w-8" />,
+          name: 'Ahrefs DR 25+',
+          description: 'Increase Domain Rating to 25+ with quality referring domains',
+          features: [
+            'DR Boost to 25+',
+            'Quality Referring Domains',
+            'Natural Link Velocity',
+            'Dofollow Links',
+            '30 Days Completion',
+            'Detailed Analytics'
+          ],
+          startingPrice: '₹999',
+          priceNote: 'Original: ₹2,499 - Save 60%',
+          popular: false
+        },
+        {
+          icon: <Shield className="h-8 w-8" />,
+          name: 'Ahrefs DR 35+',
+          description: 'Boost Domain Rating to 35+ with premium referring domains',
+          features: [
+            'DR Boost to 35+',
+            'Premium Referring Domains',
+            'Authority Site Links',
+            'Natural Growth',
+            '45 Days Completion',
+            'White-hat Strategy'
+          ],
+          startingPrice: '₹1,499',
+          priceNote: 'Original: ₹3,999 - Save 63%',
+          popular: true
+        },
+        {
+          icon: <CheckCircle className="h-8 w-8" />,
+          name: 'Ahrefs DR 40+',
+          description: 'Achieve 40+ Domain Rating with ultra premium domains',
+          features: [
+            'DR Boost to 40+',
+            'Ultra Premium Domains',
+            'High DR Network Links',
+            'Natural Pattern',
+            '60 Days Completion',
+            'Priority Implementation'
+          ],
+          startingPrice: '₹1,999',
+          priceNote: 'Original: ₹4,999 - Save 60%',
+          popular: false
+        }
+      ]
+    },
+    {
+      title: '📍 ADDITIONAL SERVICES',
+      icon: <MapPin className="h-12 w-12" />,
+      description: 'Complete digital solutions for your business growth',
+      services: [
+        {
+          icon: <Users className="h-8 w-8" />,
+          name: 'GMB Profile Setup',
+          description: 'Complete Google My Business profile setup and optimization',
+          features: [
+            'Business Profile Creation',
+            'Category Optimization',
+            'Photo Optimization',
+            'Contact Details Setup',
+            'Business Hours Setup',
+            'Products/Services Listing'
+          ],
+          startingPrice: '₹2,500',
+          priceNote: 'One-time setup fee'
         },
         {
           icon: <TrendingUp className="h-8 w-8" />,
-          name: 'Keyword Research & Strategy',
-          description: 'Comprehensive keyword research and targeting strategy for maximum ROI',
+          name: 'GMB Ranking',
+          description: 'Monthly GMB ranking and optimization service',
           features: [
-            'Competitor Keyword Analysis',
-            'Search Volume & Difficulty Analysis',
-            'Long-tail Keyword Identification',
-            'Buyer Intent Keyword Mapping',
-            'Seasonal Keyword Planning',
-            'Local Keyword Research',
-            'Keyword Gap Analysis',
-            'Content Opportunity Identification',
-            'Ranking Difficulty Assessment',
-            'ROI-Focused Keyword Strategy'
+            'Local SEO Optimization',
+            'Citation Building',
+            'Review Management',
+            'Regular Posts Updates',
+            'Performance Tracking',
+            'Monthly Report'
           ],
-          benefits: [
-            'Targeted traffic acquisition',
-            'Higher conversion rates',
-            'Competitive advantage',
-            'Strategic content planning'
-          ]
+          startingPrice: '₹5,000/month',
+          priceNote: 'Monthly subscription'
         },
         {
-          icon: <BarChart3 className="h-8 w-8" />,
-          name: 'Monthly SEO Performance Tracking',
-          description: 'Ongoing SEO performance monitoring and optimization recommendations',
+          icon: <Globe className="h-8 w-8" />,
+          name: 'Website Development',
+          description: 'Professional website development services',
           features: [
-            'Monthly Ranking Reports',
-            'Organic Traffic Analysis',
-            'Backlink Growth Monitoring',
-            'Competitor Performance Tracking',
-            'Conversion Rate Optimization',
-            'Technical SEO Health Checks',
-            'Content Performance Analysis',
-            'Google Algorithm Updates Monitoring',
-            'Performance Recommendations',
-            'Strategy Adjustments'
+            'Landing Page: ₹2,000',
+            '4-5 Page Website: ₹5,000',
+            'Mobile Responsive Design',
+            'SEO Optimized',
+            'Contact Forms',
+            'Google Analytics'
           ],
-          benefits: [
-            'Continuous improvement',
-            'Algorithm update protection',
-            'Performance optimization',
-            'ROI measurement'
-          ]
+          startingPrice: '₹2,000 - ₹5,000',
+          priceNote: 'Custom pricing available'
         }
       ]
     }
   ];
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* ✅ SEO OPTIMIZED META TAGS */}
       <Helmet>
-        <title>Premium Backlink Services | SEO & Link Building Packages - 360EagleWeb</title>
+        <title>Premium SEO Services | Backlinks, Moz DA, Ahrefs DR - 360EagleWeb</title>
         <meta
           name="description"
-          content="Professional backlink services: Premium dofollow backlinks, SEO packages, link building strategies. Boost your website rankings with 360EagleWeb's expert services."
+          content="Professional SEO services: Premium backlinks, Moz DA increase, Ahrefs DR boost, GMB setup. Affordable packages starting from ₹100."
         />
         <meta
           name="keywords"
-          content="backlink services, SEO packages, dofollow backlinks, link building, premium backlinks, Google safe backlinks, 360EagleWeb services, SEO services"
+          content="backlink services, Moz DA increase, Ahrefs DR boost, GMB setup, website development, SEO services India"
         />
         <link rel="canonical" href="https://360eagleweb.com/services" />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
-              🦅 Premium Backlink Services
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Our <span className="text-yellow-400">Backlink</span> Services
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
-              Premium dofollow backlink packages designed to boost your website rankings and authority with Google-safe strategies
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
-                <Star className="h-4 w-4 mr-1" /> 1000+ Clients Served
-              </span>
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
-                <Star className="h-4 w-4 mr-1" /> Google Safe Techniques
-              </span>
-              <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
-                <Star className="h-4 w-4 mr-1" /> 4 Weeks Average Results
-              </span>
-            </div>
+      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-700 text-white py-20 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
+            🦅 Premium SEO Services
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Our <span className="text-yellow-400">SEO Services</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100">
+            Premium backlinks, Moz DA boost, Ahrefs DR increase, and complete digital solutions
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
+              <Star className="h-4 w-4 mr-1" /> 1500+ Clients Served
+            </span>
+            <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
+              <Star className="h-4 w-4 mr-1" /> Google Safe Techniques
+            </span>
+            <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center">
+              <Star className="h-4 w-4 mr-1" /> Affordable Pricing
+            </span>
           </div>
         </div>
       </section>
 
       {/* Services Categories */}
       {serviceCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className={categoryIndex % 2 === 0 ? 'py-16 bg-white' : 'py-16 bg-gray-50'}>
+        <section 
+          key={categoryIndex} 
+          className={categoryIndex % 2 === 0 ? 'py-16 bg-white' : 'py-16 bg-gray-50'}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <div className="text-blue-600 mb-4 flex justify-center">
@@ -416,66 +301,82 @@ const Services = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {category.services.map((service, serviceIndex) => (
-                <div key={serviceIndex} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-200">
+                <div 
+                  key={serviceIndex} 
+                  className={`relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${
+                    service.popular ? 'border-yellow-400 transform hover:scale-105' : 'border-gray-200'
+                  }`}
+                >
+                  {/* Popular Badge */}
+                  {service.popular && (
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-4 py-2 rounded-full text-sm font-bold flex items-center space-x-1">
+                        <Star className="h-4 w-4 fill-current" />
+                        <span>POPULAR</span>
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Service Icon */}
                   <div className="text-blue-600 mb-4">
                     {service.icon}
                   </div>
                   
+                  {/* Service Name */}
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     {service.name}
                   </h3>
                   
-                  <p className="text-gray-600 mb-6 text-lg">
+                  {/* Service Description */}
+                  <p className="text-gray-600 mb-6 text-lg leading-relaxed">
                     {service.description}
                   </p>
+
+                  {/* Starting Price */}
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 mb-6 border border-blue-200">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600 mb-1">
+                        {service.startingPrice}
+                      </div>
+                      <div className="text-sm text-blue-700 font-medium">
+                        {service.priceNote}
+                      </div>
+                    </div>
+                  </div>
                   
                   {/* Features Section */}
-                  <div className="mb-6">
+                  <div className="mb-8">
                     <h4 className="font-semibold text-gray-900 mb-3 text-lg flex items-center">
                       <Zap className="h-5 w-5 text-yellow-500 mr-2" />
-                      What's Included:
+                      Service Includes:
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-gray-700 flex items-start">
                           <span className="text-green-500 mr-3 mt-1 flex-shrink-0">✓</span>
-                          <span>{feature}</span>
+                          <span className="leading-relaxed">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Benefits Section */}
-                  <div className="mb-8">
-                    <h4 className="font-semibold text-gray-900 mb-3 text-lg flex items-center">
-                      <TrendingUp className="h-5 w-5 text-blue-500 mr-2" />
-                      Key Benefits:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.benefits.map((benefit, benefitIndex) => (
-                        <span key={benefitIndex} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
-                          {benefit}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Action Button - Redirects to Pricing Page */}
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Action Buttons - Only Order Now & View Pricing */}
+                  <div className="space-y-3">
                     <Link
                       to="/pricing"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 text-center"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 text-center"
+                    >
+                      <ShoppingCart className="h-5 w-5" />
+                      <span>Order Now</span>
+                    </Link>
+                    <Link
+                      to="/pricing"
+                      className="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 text-center"
                     >
                       <span>View Pricing</span>
                       <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 text-center"
-                    >
-                      <span>Contact Us</span>
                     </Link>
                   </div>
                 </div>
@@ -485,46 +386,56 @@ const Services = () => {
         </section>
       ))}
 
-      {/* Why Choose Our Backlink Services */}
+      {/* Why Choose Us Section */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose 360EagleWeb Backlink Services?
+              Why Choose 360EagleWeb Services?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We deliver premium backlink services that actually work and drive real results
+              We deliver premium SEO services that actually work and drive real results
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">100% Google Safe</h3>
-              <p className="text-gray-600">
-                All our backlink strategies comply with Google's guidelines, ensuring your website stays safe from penalties while ranking higher.
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Google Safe</h3>
+              <p className="text-gray-600 text-sm">
+                100% white-hat techniques that comply with Google guidelines
               </p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Rocket className="h-8 w-8 text-green-600" />
+                <Zap className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Fast Results</h3>
-              <p className="text-gray-600">
-                Quick 3-10 day delivery with super fast indexing. Most clients see ranking improvements within 2-4 weeks of service delivery.
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Fast Delivery</h3>
+              <p className="text-gray-600 text-sm">
+                3-10 days delivery with super fast indexing process
               </p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-purple-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Premium Quality</h3>
-              <p className="text-gray-600">
-                We only build high-quality, relevant backlinks from authoritative sources that actually impact your search rankings positively.
+              <p className="text-gray-600 text-sm">
+                High-quality backlinks from authoritative sources only
+              </p>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-red-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">1500+ Clients</h3>
+              <p className="text-gray-600 text-sm">
+                Trusted by businesses worldwide with proven results
               </p>
             </div>
           </div>
@@ -535,24 +446,25 @@ const Services = () => {
       <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Boost Your Rankings?
+            Ready to Order Your Services?
           </h2>
           <p className="text-xl mb-8 text-blue-100">
-            Choose from our premium backlink packages and start dominating search results today
+            View our complete pricing and place your order today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/pricing"
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2"
             >
-              <span>View All Packages</span>
-              <ArrowRight className="h-5 w-5" />
+              <ShoppingCart className="h-5 w-5" />
+              <span>Order Now</span>
             </Link>
             <Link
-              to="/contact"
-              className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2"
+              to="/pricing"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2"
             >
-              <span>Get Free SEO Consultation</span>
+              <span>View Pricing</span>
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
