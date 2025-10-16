@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 // Razorpay utility functions
 const loadRazorpay = (): Promise<boolean> => {
@@ -84,7 +85,7 @@ const Home = () => {
     }
   ];
 
-  // Backlink Packages - REMOVED ₹1 DEMO, STARTING FROM ₹99
+  // Backlink Packages - UPDATED WITH ₹999 AND ₹1299 PACKAGES
   const backlinkPackages = [
     {
       id: "300_backlinks",
@@ -220,6 +221,69 @@ const Home = () => {
       badge: "90% OFF",
       color: "from-teal-500 to-cyan-500",
       icon: "👑"
+    },
+    {
+      id: "10000_backlinks",
+      name: "EAGLE ULTIMATE",
+      price: 1299,
+      displayPrice: "₹1,299",
+      originalPrice: "₹12,999",
+      backlinks: "10,000+ Premium Backlinks",
+      keywords: "SEO For 15 Keywords & 8 URL",
+      features: [
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
+        "Premium Wiki Backlinks",
+        "Press Releases",
+        "Web 2.0 Links",
+        "Social Bookmarking",
+        "Authority Profile Links",
+        "Delivery Within 15 Working Days",
+        "100% Google Safe",
+        "Super Fast Index Process",
+        "40 Days Ping Back Service",
+        "Submit To 1020+ Search Engines",
+        "Premium Guest Posts",
+        "News Site Backlinks",
+        "E-commerce Backlinks"
+      ],
+      popular: false,
+      badge: "90% OFF",
+      color: "from-red-500 to-pink-500",
+      icon: "🚀"
+    },
+    {
+      id: "20000_backlinks",
+      name: "EAGLE CORPORATE",
+      price: 1999,
+      displayPrice: "₹1,999",
+      originalPrice: "₹19,999",
+      backlinks: "20,000+ Premium Backlinks",
+      keywords: "SEO For 25 Keywords & 12 URL",
+      features: [
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
+        "Premium Wiki Backlinks",
+        "Press Releases",
+        "Web 2.0 Links",
+        "Social Bookmarking",
+        "Authority Profile Links",
+        "Delivery Within 20 Working Days",
+        "100% Google Safe",
+        "Super Fast Index Process",
+        "40 Days Ping Back Service",
+        "Submit To 1020+ Search Engines",
+        "Premium Guest Posts",
+        "News Site Backlinks",
+        "E-commerce Backlinks",
+        "Video Backlinks",
+        "Image Backlinks",
+        "Custom Strategy"
+      ],
+      popular: false,
+      badge: "90% OFF",
+      color: "from-purple-500 to-indigo-500",
+      icon: "🏢"
     }
   ];
 
@@ -568,12 +632,12 @@ const Home = () => {
                 <div className={`${
                   index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
                 }`}>
-                  <button
-                    onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}
+                  <Link
+                    to="/services"
                     className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-500/30 mx-auto"
                   >
                     <span>🦅 {slide.cta}</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -619,7 +683,7 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {backlinkPackages.map((pkg, index) => (
+            {backlinkPackages.slice(0, 6).map((pkg, index) => (
               <div 
                 key={index} 
                 className={`bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
@@ -655,7 +719,7 @@ const Home = () => {
                   
                   {/* Features */}
                   <div className="space-y-3 mb-6">
-                    {pkg.features.map((feature, idx) => (
+                    {pkg.features.slice(0, 8).map((feature, idx) => (
                       <div key={idx} className="flex items-start text-blue-700 text-sm md:text-base group-hover:translate-x-1 transition-transform">
                         <span className="text-green-500 mr-3 mt-1 flex-shrink-0 text-lg">✓</span>
                         <span className="leading-relaxed">{feature}</span>
@@ -677,6 +741,16 @@ const Home = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* View All Packages Button */}
+          <div className="text-center mt-12">
+            <Link
+              to="/services"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 inline-flex items-center space-x-2 shadow-lg"
+            >
+              <span>🦅 View All Packages</span>
+            </Link>
           </div>
 
           {/* Special Offer Banner */}
@@ -904,12 +978,12 @@ const Home = () => {
           <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services starting at just <span className="text-yellow-300 font-semibold">₹99</span> with <span className="text-yellow-300 font-semibold">90% OFF</span>!</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <button
-              onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}
+            <Link
+              to="/services"
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 animate-bounce"
             >
               <span>🦅 View All Packages</span>
-            </button>
+            </Link>
             <button
               onClick={() => handlePayment(backlinkPackages[0])}
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
@@ -923,6 +997,50 @@ const Home = () => {
           </p>
         </div>
       </section>
+
+      {/* === MOBILE BOTTOM NAVIGATION BAR === */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+        <div className="flex justify-around items-center py-3">
+          {/* Home */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-blue-600"
+          >
+            <span className="text-lg">🏠</span>
+            <span className="text-xs font-medium">Home</span>
+          </button>
+
+          {/* Search */}
+          <button
+            onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">🔍</span>
+            <span className="text-xs font-medium">Search</span>
+          </button>
+
+          {/* Add to Cart - ₹99 Package */}
+          <button
+            onClick={() => handlePayment(backlinkPackages[0])}
+            className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
+          >
+            <span className="text-lg">🛒</span>
+            <span className="text-xs font-medium">Add to Cart</span>
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              ₹99
+            </span>
+          </button>
+
+          {/* Pricing */}
+          <Link
+            to="/pricing"
+            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
+          >
+            <span className="text-lg">💰</span>
+            <span className="text-xs font-medium">Pricing</span>
+          </Link>
+        </div>
+      </div>
 
       {/* Payment Form Modal */}
       {showForm && (

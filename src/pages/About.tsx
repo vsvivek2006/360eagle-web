@@ -45,50 +45,6 @@ const About: React.FC = () => {
     },
   ];
 
-  // Backlink Packages with updated pricing
-  const packages = [
-    {
-      icon: "🚀",
-      name: "EAGLE DEMO",
-      description: "Perfect for testing our service quality with 10 premium backlinks",
-      price: "₹1",
-      originalPrice: "₹999",
-      features: ["10 Do-Follow Backlinks", "Premium Wiki Links", "3 Days Delivery", "Perfect for Testing"],
-      backlinks: "10 Premium Backlinks",
-      delay: "0s"
-    },
-    {
-      icon: "🦅",
-      name: "EAGLE START",
-      description: "Ideal for new websites needing initial backlink boost",
-      price: "₹299",
-      originalPrice: "₹999",
-      features: ["300 Premium Backlinks", "2 Keywords & 1 URL", "7 Days Delivery", "100% Google Safe"],
-      backlinks: "300 Premium Backlinks",
-      delay: "0.1s"
-    },
-    {
-      icon: "⚡",
-      name: "EAGLE PRO",
-      description: "Most popular package for established websites",
-      price: "₹599",
-      originalPrice: "₹1,999",
-      features: ["750 Premium Backlinks", "2 Keywords & 2 URL", "7 Days Delivery", "Authority Profile Links"],
-      backlinks: "750 Premium Backlinks",
-      delay: "0.2s"
-    },
-    {
-      icon: "🏆",
-      name: "EAGLE BUSINESS",
-      description: "Comprehensive package for business growth",
-      price: "₹899",
-      originalPrice: "₹2,999",
-      features: ["1200 Premium Backlinks", "3 Keywords & 2 URL", "7 Days Delivery", "Press Releases Included"],
-      backlinks: "1200 Premium Backlinks",
-      delay: "0.3s"
-    }
-  ];
-
   // Work process
   const process = [
     {
@@ -194,52 +150,6 @@ const About: React.FC = () => {
     }
   ];
 
-  // Payment handler function
-  const handlePayment = async (pkg: any) => {
-    try {
-      const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
-
-      if (!RAZORPAY_KEY_ID) {
-        alert('Payment gateway is not properly configured. Please contact support.');
-        return;
-      }
-
-      const amount = parseInt(pkg.price.replace(/[^0-9]/g, ''));
-      
-      const options = {
-        key: RAZORPAY_KEY_ID,
-        amount: amount * 100,
-        currency: "INR",
-        name: "360EagleWeb",
-        description: `${pkg.name} - ${pkg.backlinks}`,
-        image: "/logo.png",
-        handler: function (response: any) {
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-          // Redirect to form submission
-          window.location.href = `/order-details?package=${encodeURIComponent(pkg.name)}&payment_id=${response.razorpay_payment_id}`;
-        },
-        prefill: {
-          name: "Customer Name",
-          email: "customer@example.com",
-          contact: "+919876543210"
-        },
-        notes: {
-          package: pkg.name,
-          backlinks: pkg.backlinks
-        },
-        theme: {
-          color: "#4F46E5"
-        }
-      };
-
-      const razorpay = new (window as any).Razorpay(options);
-      razorpay.open();
-    } catch (error) {
-      console.error("Payment error:", error);
-      alert("Payment failed. Please try again.");
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
@@ -302,7 +212,7 @@ const About: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-500">
             <Link
-              to="/"
+              to="/services"
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-400/25"
             >
               <span>View Our Packages</span>
@@ -351,7 +261,7 @@ const About: React.FC = () => {
               
               <div className="mt-8">
                 <Link
-                  to="/"
+                  to="/services"
                   className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-center inline-block"
                 >
                   View Packages
@@ -459,65 +369,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* === OUR PACKAGES === */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Backlink Packages</h2>
-            <p className="text-xl text-gray-600">Premium backlink services designed to boost your search rankings</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packages.map((pkg, index) => (
-              <div 
-                key={index}
-                className="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group animate-fade-in-up"
-                style={{animationDelay: pkg.delay}}
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{pkg.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                <p className="text-blue-600 font-semibold text-sm mb-2">{pkg.backlinks}</p>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">{pkg.description}</p>
-                <div className="space-y-2 mb-4">
-                  {pkg.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-gray-700 text-xs">
-                      <span className="text-green-500 mr-2">✓</span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Pricing Section */}
-                <div className="border-t pt-4 space-y-3">
-                  <div className="text-center">
-                    <div className="text-blue-600 font-bold text-lg">{pkg.price}</div>
-                    <div className="text-gray-500 text-sm line-through">{pkg.originalPrice}</div>
-                  </div>
-
-                  {/* Order Now Button */}
-                  <button
-                    onClick={() => handlePayment(pkg)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-1"
-                  >
-                    <span>🦅</span>
-                    <span>Order Now - {pkg.price}</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12 animate-fade-in-up">
-            <Link
-              to="/"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 inline-flex items-center space-x-2 shadow-lg"
-            >
-              <span>View All Packages & Pricing</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* === OUR PROCESS === */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -609,7 +460,7 @@ const About: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/"
+              to="/services"
               className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 shadow-2xl"
             >
               <span>View Packages</span>

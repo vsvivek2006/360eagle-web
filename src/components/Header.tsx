@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, MessageCircle, ArrowUp } from "lucide-react";
 
 type NavItem = { name: string; href: string };
 const primaryNav: NavItem[] = [
@@ -20,6 +20,7 @@ const legalNav: NavItem[] = [
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [legalOpen, setLegalOpen] = useState<boolean>(false);
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
   // WhatsApp B2B form state
   const [waOpen, setWaOpen] = useState<boolean>(false);
@@ -45,6 +46,28 @@ const Header: React.FC = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Show/hide scroll to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const linkBase =
     "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
@@ -180,11 +203,11 @@ const Header: React.FC = () => {
                 <span>Join as B2B</span>
               </button>
               <NavLink
-                to="/contact"
-                className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center gap-2"
+                to="/services"
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-4 py-2 rounded-lg font-bold transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center gap-2"
               >
-                <Phone className="h-4 w-4" />
-                <span>Get Free Quote</span>
+                <span>🦅</span>
+                <span>Order Now - ₹99</span>
               </NavLink>
             </div>
 
@@ -251,12 +274,12 @@ const Header: React.FC = () => {
                     Join as B2B
                   </button>
                   <NavLink
-                    to="/contact"
-                    className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200 text-center flex items-center justify-center gap-2"
+                    to="/services"
+                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-4 py-3 rounded-lg font-bold transition-all duration-200 text-center flex items-center justify-center gap-2"
                     onClick={() => setIsOpen(false)}
                   >
-                    <Phone className="h-4 w-4" />
-                    Get Free Quote
+                    <span>🦅</span>
+                    Order Now - ₹99
                   </NavLink>
                 </div>
               </div>
@@ -264,6 +287,17 @@ const Header: React.FC = () => {
           )}
         </nav>
       </header>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white p-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-bounce"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-6 w-6" />
+        </button>
+      )}
 
       {/* WhatsApp B2B Popup */}
       {waOpen && (

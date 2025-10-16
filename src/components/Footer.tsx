@@ -62,27 +62,12 @@ Let's grow business together 🚀`;
             {/* Brand + Contact Info */}
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="flex-shrink-0 bg-white p-2 rounded-full"> {/* White bg for logo */}
+                <div className="flex-shrink-0 bg-white p-3 rounded-full"> {/* White bg for logo */}
                   <img
                     src="/logo.svg"
                     alt="360EagleWeb Logo"
                     className="h-16 w-16 object-contain"
                   />
-                </div>
-                <div className="flex flex-col">
-                  <span
-                    className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-yellow-400 bg-clip-text text-transparent"
-                    style={{
-                      fontFamily: '"Haboro Serif", serif',
-                      fontWeight: 700,
-                      letterSpacing: "-0.025em",
-                    }}
-                  >
-                    360EagleWeb
-                  </span>
-                  <span className="text-sm text-gray-400 -mt-1">
-                    Digital Growth Partners
-                  </span>
                 </div>
               </div>
 
@@ -220,11 +205,6 @@ Let's grow business together 🚀`;
               Website designed & developed by <strong>Vivek Singh</strong>
             </p>
           </div>
-        </div>
-
-        {/* ✅ Fixed Logo at Bottom Right */}
-        <div className="fixed bottom-5 left-5 z-50 bg-white rounded-full shadow-lg p-2">
-          <img src="/logo.svg" alt="360EagleWeb Logo" className="h-12 w-12 object-contain" />
         </div>
       </footer>
 
