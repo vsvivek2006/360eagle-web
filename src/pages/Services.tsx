@@ -188,9 +188,9 @@ const Services = () => {
             '30 Days Completion',
             'Detailed Report'
           ],
-          startingPrice: '₹99',
+          startingPrice: '₹899',
           price: 899,
-          priceNote: 'Original: ₹1,499 - Save 53%',
+          priceNote: 'Original: ₹1,499 - Save 40%',
           type: 'da-service',
           popular: false
         },
@@ -208,7 +208,7 @@ const Services = () => {
           ],
           startingPrice: '₹999',
           price: 999,
-          priceNote: 'Original: ₹1,999 - Save 60%',
+          priceNote: 'Original: ₹1,999 - Save 50%',
           type: 'da-service',
           popular: true
         },
@@ -224,9 +224,9 @@ const Services = () => {
             '60 Days Completion',
             'Priority Support'
           ],
-          startingPrice: '₹199',
+          startingPrice: '₹1,299',
           price: 1299,
-          priceNote: 'Original: ₹2,499 - Save 52%',
+          priceNote: 'Original: ₹2,499 - Save 48%',
           type: 'da-service',
           popular: false
         }
