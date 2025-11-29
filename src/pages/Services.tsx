@@ -188,8 +188,8 @@ const Services = () => {
             '30 Days Completion',
             'Detailed Report'
           ],
-          startingPrice: '₹699',
-          price: 699,
+          startingPrice: '₹99',
+          price: 899,
           priceNote: 'Original: ₹1,499 - Save 53%',
           type: 'da-service',
           popular: false
@@ -206,8 +206,8 @@ const Services = () => {
             '45 Days Completion',
             'White-hat Techniques'
           ],
-          startingPrice: '₹799',
-          price: 799,
+          startingPrice: '₹999',
+          price: 999,
           priceNote: 'Original: ₹1,999 - Save 60%',
           type: 'da-service',
           popular: true
@@ -224,9 +224,9 @@ const Services = () => {
             '60 Days Completion',
             'Priority Support'
           ],
-          startingPrice: '₹899',
-          price: 899,
-          priceNote: 'Original: ₹2,499 - Save 64%',
+          startingPrice: '₹199',
+          price: 1299,
+          priceNote: 'Original: ₹2,499 - Save 52%',
           type: 'da-service',
           popular: false
         }
