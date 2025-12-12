@@ -103,13 +103,13 @@ const Header: React.FC = () => {
                     className="text-xl md:text-2xl font-extrabold bg-gradient-to-r from-purple-700 to-indigo-900 bg-clip-text text-transparent"
                     style={{ fontFamily: '"Haboro Serif", serif', letterSpacing: "-0.05em" }}
                   >
-                    360EagleWeb
+
                   </span>
                   <span
                     className="hidden sm:block text-xs text-gray-500 -mt-1 tracking-wider"
                     style={{ fontFamily: '"Haboro Serif", serif' }}
                   >
-                    Digital Growth Partners
+                    
                   </span>
                 </div>
               </Link>
