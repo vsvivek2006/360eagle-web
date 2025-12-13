@@ -49,189 +49,199 @@ const Home = () => {
     keywords: ""
   });
 
+  // ✅ FIXED: Use Vite environment variables
   const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
   const WHATSAPP_NUMBER = "919310533973";
 
-  // Hero Slides - Professional Version
+  // Hero Slides
   const heroSlides = [
     {
       title: "Premium Backlink Services",
-      subtitle: "Genuine Results, Transparent Process",
-      originalPrice: "",
-      description: "Get high-quality dofollow backlinks from authoritative websites with 70-90 DA/PA. Our Google-safe link building strategies ensure sustainable growth.",
-      badge: "Trusted by 1500+ Clients",
+      subtitle: "Demo Package: ₹1 Only",
+      originalPrice: "₹999",
+      description: "Buy High Quality DoFollow Backlinks with 70-90 DA, PA Wiki, Article Directories, Social Bookmarks & News Sites. Google Algorithm Safe Link Building for Higher Rankings.",
+      badge: "🚀 DEMO ₹1 ONLY",
       bgGradient: "from-blue-900 via-indigo-800 to-purple-700",
-      cta: "Explore Packages"
-    },
-    {
-      title: "Higher Ranking Within 4 Weeks",
-      subtitle: "Proven 270% Revenue Growth",
-      originalPrice: "",
-      description: "Join our satisfied clients who achieved significant search engine ranking improvements within just 4 weeks of implementing our strategies.",
-      badge: "Data-Driven Results",
-      bgGradient: "from-emerald-900 via-teal-800 to-cyan-700",
-      cta: "View Success Stories"
+      cta: "Try Demo for ₹1"
     },
     {
       title: "Google Algorithm Safe Link Building",
-      subtitle: "Sustainable SEO Growth",
-      originalPrice: "",
-      description: "Our white-hat techniques are fully compliant with Google's guidelines, ensuring long-term growth without penalties or risks.",
-      badge: "100% White-Hat Methods",
+      subtitle: "Rank #1 on Google",
+      originalPrice: "₹2,999",
+      description: "Backlinks have always been the big ticket item to jump your site up the rankings. We guarantee that your backlinks will be loved by Google and your site will quickly Reach Page One.",
+      badge: "🛡️ Google Safe Backlinks",
+      bgGradient: "from-emerald-900 via-teal-800 to-cyan-700",
+      cta: "Get Ranking Now"
+    },
+    {
+      title: "Higher Ranking Within 4 Weeks",
+      subtitle: "270% Revenue Supercharge",
+      originalPrice: "₹4,999",
+      description: "100% Of Our Customers' Websites Get Higher Search Page Rankings Within 4 Weeks; this has led to a > 270% supercharge in Revenue.",
+      badge: "📈 Proven Results",
       bgGradient: "from-violet-900 via-purple-800 to-fuchsia-700",
-      cta: "Get Started"
+      cta: "Boost Rankings"
     }
   ];
 
-  // Backlink Packages - Starting from ₹199, No Demo Package
+  // Backlink Packages - MOVED UP RIGHT AFTER HERO
   const backlinkPackages = [
     {
-      id: "300_backlinks",
-      name: "STARTER PACKAGE",
-      price: 199,
-      displayPrice: "₹199",
-      originalPrice: "₹1,999",
-      backlinks: "300 Premium Backlinks",
-      keywords: "SEO For 2 Keywords & 1 URL",
+      id: "demo_backlinks",
+      name: "EAGLE DEMO",
+      price: 1,
+      displayPrice: "₹1",
+      originalPrice: "₹999",
+      backlinks: "10 Premium Backlinks",
+      keywords: "SEO For 1 Keyword & 1 URL",
       features: [
-        "300 Quality Mixed Backlinks",
-        "Do-Follow Backlinks from Articles & Forums",
+        "10 Quality Do-Follow Backlinks",
         "Premium Wiki Backlinks",
-        "Press Release Submissions",
-        "Web 2.0 Property Links",
         "Social Bookmarking",
-        "30 Authority Profile Links",
-        "Delivery Within 7 Working Days",
-        "100% Google Safe Techniques",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submission to 1020+ Search Engines"
+        "5 Authority Profile Links",
+        "Delivery Within 3 Working Days",
+        "100% Google Safe",
+        "Fast Index Process",
+        "Perfect for Testing Service Quality"
       ],
       popular: false,
-      badge: "SAVE 90%",
-      color: "from-green-500 to-emerald-500",
+      badge: "DEMO",
+      color: "from-blue-500 to-cyan-500",
+      demo: true,
       icon: "🚀"
     },
     {
-      id: "750_backlinks",
-      name: "PROFESSIONAL PACKAGE",
-      price: 399,
-      displayPrice: "₹399",
-      originalPrice: "₹3,999",
-      backlinks: "750 Premium Backlinks",
-      keywords: "SEO For 2 Keywords & 2 URLs",
+      id: "300_backlinks",
+      name: "EAGLE START",
+      price: 99,
+      displayPrice: "₹99",
+      originalPrice: "₹999",
+      backlinks: "300 Premium Backlinks",
+      keywords: "SEO For 2 Keywords & 1 URL",
       features: [
-        "750 Quality Mixed Backlinks",
-        "Do-Follow Backlinks from Articles & Forums",
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
-        "Press Release Submissions",
-        "Web 2.0 Property Links",
+        "Press Releases",
+        "Web 2.0 Links",
         "Social Bookmarking",
-        "50 Authority Profile Links",
+        "30 Authority Profile Links",
         "Delivery Within 7 Working Days",
-        "100% Google Safe Techniques",
+        "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submission to 1020+ Search Engines",
-        "Priority Support",
-        "Detailed Analytics Report"
+        "Submit To 1020+ Search Engines"
+      ],
+      popular: false,
+      badge: "90% OFF",
+      color: "from-green-500 to-emerald-500",
+      icon: "🎯"
+    },
+    {
+      id: "750_backlinks",
+      name: "EAGLE PRO",
+      price: 199,
+      displayPrice: "₹199",
+      originalPrice: "₹1,999",
+      backlinks: "750 Premium Backlinks",
+      keywords: "SEO For 2 Keywords & 2 URL",
+      features: [
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
+        "Premium Wiki Backlinks",
+        "Press Releases",
+        "Web 2.0 Links",
+        "Social Bookmarking",
+        "Authority Profile Links",
+        "Delivery Within 7 Working Days",
+        "100% Google Safe",
+        "Super Fast Index Process",
+        "40 Days Ping Back Service",
+        "Submit To 1020+ Search Engines"
       ],
       popular: true,
-      badge: "MOST POPULAR",
+      badge: "90% OFF",
       color: "from-purple-500 to-indigo-500",
       icon: "⚡"
     },
     {
       id: "1200_backlinks",
-      name: "BUSINESS PACKAGE",
-      price: 599,
-      displayPrice: "₹599",
-      originalPrice: "₹5,999",
+      name: "EAGLE BUSINESS",
+      price: 299,
+      displayPrice: "₹299",
+      originalPrice: "₹2,999",
       backlinks: "1200 Premium Backlinks",
-      keywords: "SEO For 3 Keywords & 2 URLs",
+      keywords: "SEO For 3 Keywords & 2 URL",
       features: [
-        "1200 Quality Mixed Backlinks",
-        "Do-Follow Backlinks from Articles & Forums",
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
-        "Press Release Submissions",
-        "Web 2.0 Property Links",
+        "Press Releases",
+        "Web 2.0 Links",
         "Social Bookmarking",
-        "75 Authority Profile Links",
+        "Authority Profile Links",
         "Delivery Within 7 Working Days",
-        "100% Google Safe Techniques",
+        "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submission to 1020+ Search Engines",
-        "Priority Support",
-        "Detailed Analytics Report",
-        "Competitor Analysis"
+        "Submit To 1020+ Search Engines"
       ],
       popular: false,
-      badge: "SAVE 90%",
+      badge: "90% OFF",
       color: "from-orange-500 to-red-500",
       icon: "🏆"
     },
     {
       id: "2000_backlinks",
-      name: "ENTERPRISE PACKAGE",
-      price: 999,
-      displayPrice: "₹999",
-      originalPrice: "₹9,999",
+      name: "EAGLE ENTERPRISE",
+      price: 499,
+      displayPrice: "₹499",
+      originalPrice: "₹4,999",
       backlinks: "2000+ Premium Backlinks",
-      keywords: "SEO For 6 Keywords & 2 URLs",
+      keywords: "SEO For 6 Keywords & 2 URL",
       features: [
-        "2000+ Quality Mixed Backlinks",
-        "Do-Follow Backlinks from Articles & Forums",
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
-        "Press Release Submissions",
-        "Web 2.0 Property Links",
+        "Press Releases",
+        "Web 2.0 Links",
         "Social Bookmarking",
-        "100 Authority Profile Links",
+        "Authority Profile Links",
         "Delivery Within 10 Working Days",
-        "100% Google Safe Techniques",
+        "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submission to 1020+ Search Engines",
-        "24/7 Priority Support",
-        "Detailed Analytics Report",
-        "Competitor Analysis",
-        "Monthly Performance Review"
+        "Submit To 1020+ Search Engines"
       ],
       popular: false,
-      badge: "SAVE 90%",
+      badge: "90% OFF",
       color: "from-pink-500 to-rose-500",
       icon: "💼"
     },
     {
       id: "5000_backlinks",
-      name: "PREMIUM PACKAGE",
-      price: 1999,
-      displayPrice: "₹1,999",
-      originalPrice: "₹19,999",
+      name: "EAGLE PREMIUM",
+      price: 999,
+      displayPrice: "₹999",
+      originalPrice: "₹9,999",
       backlinks: "5,000+ Premium Backlinks",
-      keywords: "SEO For 10 Keywords & 5 URLs",
+      keywords: "SEO For 10 Keywords & 5 URL",
       features: [
-        "5000+ Quality Mixed Backlinks",
-        "Do-Follow Backlinks from Articles & Forums",
+        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
-        "Press Release Submissions",
-        "Web 2.0 Property Links",
+        "Press Releases",
+        "Web 2.0 Links",
         "Social Bookmarking",
-        "150 Authority Profile Links",
+        "Authority Profile Links",
         "Delivery Within 10 Working Days",
-        "100% Google Safe Techniques",
+        "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submission to 1020+ Search Engines",
-        "24/7 Priority Support",
-        "Detailed Analytics Report",
-        "Competitor Analysis",
-        "Monthly Performance Review",
-        "Custom Strategy Development",
-        "Dedicated Account Manager"
+        "Submit To 1020+ Search Engines"
       ],
       popular: false,
-      badge: "SAVE 90%",
+      badge: "90% OFF",
       color: "from-teal-500 to-cyan-500",
       icon: "👑"
     }
@@ -279,7 +289,7 @@ const Home = () => {
       step: "01",
       title: "Select Package",
       description: "Choose the perfect backlink package for your website needs",
-      icon: "📦",
+      icon: "🦅",
       color: "from-blue-500 to-purple-500"
     },
     {
@@ -308,28 +318,28 @@ const Home = () => {
   // Features
   const features = [
     {
-      icon: "🎯",
-      title: "Targeted Strategy",
-      description: "Precision-targeted backlink strategy with 100% customer satisfaction"
+      icon: "🦅",
+      title: "Eagle-Eye Precision",
+      description: "Targeted backlink strategy with 100% customer satisfaction"
     },
     {
       icon: "⚡",
-      title: "Rapid Results",
+      title: "Lightning Fast Results",
       description: "Higher rankings within 4 weeks with 270% revenue growth"
     },
     {
       icon: "💰",
-      title: "Competitive Pricing",
-      description: "Premium quality backlinks at the most competitive market prices"
+      title: "Most Affordable Prices",
+      description: "Premium quality backlinks at the cheapest market prices"
     },
     {
       icon: "🛡️",
-      title: "Algorithm Safe",
+      title: "Google Algorithm Safe",
       description: "100% white-hat techniques loved by Google algorithms"
     },
     {
       icon: "🚀",
-      title: "Fast Indexing",
+      title: "Super Fast Indexing",
       description: "Quick indexing with 40 days ping back service"
     },
     {
@@ -387,9 +397,9 @@ const Home = () => {
     {
       name: "Priya Sharma",
       company: "Blogger & Content Creator",
-      text: "The quality of backlinks exceeded my expectations. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
+      text: "The demo package convinced me to go for the full service. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
       rating: 5,
-      service: "1200 Backlinks Package"
+      service: "Demo + 1200 Backlinks"
     },
     {
       name: "Amit Patel",
@@ -423,7 +433,7 @@ const Home = () => {
       answer: "On-page SEO refers to optimizing elements on your website like content, HTML tags, and internal linking."
     },
     {
-      question: "Is Buying Backlinks Safe?",
+      question: "Buy Backlinks Is Safe?",
       answer: "Yes, when done correctly with high-quality, relevant backlinks from trusted sources like we provide."
     }
   ];
@@ -500,7 +510,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const message = `360EagleWeb - New Backlink Order\n\nPackage: ${selectedPackage.name}\nBacklinks: ${selectedPackage.backlinks}\nPrice: ${selectedPackage.displayPrice}\n\nCustomer Details:\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nWebsite: ${formData.website}\nKeywords: ${formData.keywords}\n\nOrder Time: ${new Date().toLocaleString()}`;
+    const message = `🦅 360EagleWeb - New Backlink Order\n\nPackage: ${selectedPackage.name}\nBacklinks: ${selectedPackage.backlinks}\nPrice: ${selectedPackage.displayPrice}\n\nCustomer Details:\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nWebsite: ${formData.website}\nKeywords: ${formData.keywords}\n\nOrder Time: ${new Date().toLocaleString()}`;
     
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -516,7 +526,7 @@ const Home = () => {
     });
     setSelectedPackage(null);
 
-    alert('Order Completed Successfully! We have received your details. Our team will contact you shortly.');
+    alert('🎉 Order Completed Successfully! We have received your details. Our team will contact you shortly.');
   };
 
   // Auto slide change
@@ -530,246 +540,200 @@ const Home = () => {
   return (
     <div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <Helmet>
-        <title>360EagleWeb - Premium Backlink Services | High Quality DoFollow Backlinks</title>
+        <title>360EagleWeb - Premium Backlink Services | Buy High Quality DoFollow Backlinks</title>
         <meta 
           name="description" 
-          content="360EagleWeb offers premium backlink services with high-quality dofollow backlinks from 70-90 DA/PA websites. Google-safe link building for sustainable growth."
+          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Demo: ₹1 Only."
         />
         <meta 
           name="keywords" 
-          content="premium backlinks, dofollow backlinks, seo backlinks, high da backlinks, google safe backlinks, link building services"
+          content="buy backlinks, dofollow backlinks, seo backlinks, high da backlinks, google safe backlinks, premium backlinks, backlink services, 360eagleweb"
         />
         <link rel="canonical" href="https://360eagleweb.com" />
       </Helmet>
 
-      {/* === PROFESSIONAL HERO SECTION === */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          {heroSlides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-all duration-1000 ${
-                index === currentSlide 
-                  ? 'opacity-100' 
-                  : 'opacity-0'
-              }`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${slide.bgGradient}`} />
-              <div className="absolute inset-0 bg-black/20" />
-            </div>
-          ))}
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="text-center">
-            {heroSlides.map((slide, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  index === currentSlide 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'absolute opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="mb-6">
-                  <span className="inline-block bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold border border-white/20">
-                    {slide.badge}
-                  </span>
+      {/* === HERO SECTION === */}
+      <section className="relative h-screen overflow-hidden">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 transform ${
+              index === currentSlide 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-full'
+            } bg-gradient-to-br ${slide.bgGradient}`}
+          >
+            <div className="relative h-full flex items-center justify-center text-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className={`inline-flex items-center bg-white text-blue-600 px-4 py-2 rounded-full text-sm md:text-lg font-bold mb-6 md:mb-8 ${
+                  index === currentSlide ? 'animate-bounce' : ''
+                }`}>
+                  🦅 {slide.badge}
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+                <h1 className={`text-3xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight ${
+                  index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                }`}>
                   {slide.title}
+                  <span className="block text-yellow-300 mt-2 md:mt-4 text-2xl md:text-4xl lg:text-5xl">
+                    {slide.subtitle}
+                  </span>
+                  <span className="block text-white/70 text-xl md:text-2xl mt-2 line-through">
+                    {slide.originalPrice}
+                  </span>
                 </h1>
                 
-                <div className="text-xl sm:text-2xl md:text-3xl text-blue-200 font-medium mb-6">
-                  {slide.subtitle}
-                </div>
-                
-                <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+                <p className={`text-base md:text-xl mb-6 md:mb-8 max-w-4xl mx-auto text-white/90 leading-relaxed ${
+                  index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                }`}>
                   {slide.description}
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className={`${
+                  index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                }`}>
                   <button
                     onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-2xl"
+                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-500/30 mx-auto"
                   >
-                    {slide.cta}
-                  </button>
-                  <button
-                    onClick={() => handlePayment(backlinkPackages[0])}
-                    className="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300"
-                  >
-                    Get Started from ₹199
+                    <span>🦅 {slide.cta}</span>
                   </button>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
+        ))}
 
-          {/* Slide Indicators */}
-          <div className="flex justify-center mt-12 space-x-3">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'bg-white w-12' 
-                    : 'bg-white/50 hover:bg-white/80'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3">
+          {heroSlides.map((_, index) => (
             <button
-              onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}
-              className="text-white/70 hover:text-white transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </button>
-          </div>
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide 
+                  ? 'bg-yellow-400 scale-125 shadow-lg shadow-yellow-400/50' 
+                  : 'bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* === PACKAGES SECTION === */}
-      <section id="packages" className="py-16 md:py-24 bg-white">
+      {/* === PACKAGES SECTION - MOVED RIGHT AFTER HERO === */}
+      <section id="packages" className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Professional Backlink Packages
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4 animate-fade-in-up">
+              🦅 EagleWeb Backlink Packages
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our range of professional packages designed to boost your search rankings
+            <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
+              Choose your flight plan to higher rankings with premium backlinks
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                Limited Time Offer
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                🔥 90% OFF Limited Time
               </span>
-              <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                Fast Delivery
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                ⚡ Fast 7-Day Delivery
               </span>
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                Google Safe
+              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                🛡️ Google Safe
               </span>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {backlinkPackages.slice(0, 2).map((pkg, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {backlinkPackages.map((pkg, index) => (
               <div 
                 key={index} 
-                className={`bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border ${
-                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-2' : 'border-gray-200'
-                } overflow-hidden`}
+                className={`bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
+                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-3' : 
+                  pkg.demo ? 'border-blue-500 transform hover:-translate-y-3' : 'border-blue-200 hover:border-blue-400'
+                } overflow-hidden group animate-fade-in-up`}
+                style={{animationDelay: `${index * 0.1}s`}}
               >
                 {pkg.popular && (
-                  <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 px-6 text-center font-bold">
-                    RECOMMENDED PACKAGE
+                  <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
+                    ⭐ MOST POPULAR CHOICE
+                  </div>
+                )}
+                {pkg.demo && (
+                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
+                    🚀 PERFECT FOR TESTING
                   </div>
                 )}
                 
-                <div className="p-8">
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                    <p className="text-blue-600 font-semibold text-xl mb-1">{pkg.backlinks}</p>
-                    <p className="text-gray-600">{pkg.keywords}</p>
+                <div className="p-6 md:p-8">
+                  {/* Package Header */}
+                  <div className="text-center mb-6">
+                    <div className="text-4xl mb-3">{pkg.icon}</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">{pkg.name}</h3>
+                    <p className="text-blue-600 font-semibold text-lg md:text-xl mb-2">{pkg.backlinks}</p>
+                    <p className="text-blue-700 text-sm md:text-base mb-4">{pkg.keywords}</p>
                   </div>
                   
-                  <div className="text-center mb-8 p-6 bg-gray-50 rounded-xl">
-                    <div className="flex items-baseline justify-center space-x-3 mb-3">
-                      <span className="text-4xl md:text-5xl font-bold text-blue-600">{pkg.displayPrice}</span>
-                      <span className="text-xl text-gray-400 line-through">{pkg.originalPrice}</span>
+                  {/* Pricing */}
+                  <div className="text-center mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+                    <div className="flex items-baseline justify-center space-x-2 mb-2">
+                      <span className="text-3xl md:text-4xl font-bold text-blue-600">{pkg.displayPrice}</span>
+                      <span className="text-lg md:text-xl text-blue-400 line-through">{pkg.originalPrice}</span>
                     </div>
-                    <span className={`px-4 py-2 rounded-full text-sm font-bold ${
-                      pkg.popular ? 'bg-purple-100 text-purple-700' : 'bg-red-100 text-red-700'
+                    <span className={`px-3 py-1 rounded-full text-sm font-bold ${
+                      pkg.demo ? 'bg-blue-500 text-white' : 'bg-red-500 text-white'
                     }`}>
                       {pkg.badge}
                     </span>
                   </div>
                   
-                  <div className="space-y-4 mb-8">
-                    {pkg.features.slice(0, 6).map((feature, idx) => (
-                      <div key={idx} className="flex items-start text-gray-700">
-                        <span className="text-green-500 mr-3 mt-1 flex-shrink-0">✓</span>
-                        <span>{feature}</span>
+                  {/* Features */}
+                  <div className="space-y-3 mb-6">
+                    {pkg.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start text-blue-700 text-sm md:text-base group-hover:translate-x-1 transition-transform">
+                        <span className="text-green-500 mr-3 mt-1 flex-shrink-0 text-lg">✓</span>
+                        <span className="leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
+                  {/* Order Now Button */}
                   <button
                     onClick={() => handlePayment(pkg)}
-                    className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 ${
-                      pkg.popular
+                    className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg ${
+                      pkg.demo 
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white animate-pulse' 
+                        : pkg.popular
                         ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
                         : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
                     }`}
                   >
-                    Get Started - {pkg.displayPrice}
+                    {pkg.demo ? '🚀 Try Demo - ₹1 Only' : `🦅 Order Now - ${pkg.displayPrice}`}
                   </button>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            {backlinkPackages.slice(2).map((pkg, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden"
-              >
-                <div className="p-6">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                    <p className="text-blue-600 font-semibold mb-1">{pkg.backlinks}</p>
-                    <p className="text-sm text-gray-600">{pkg.keywords}</p>
-                  </div>
-                  
-                  <div className="text-center mb-6">
-                    <div className="flex items-baseline justify-center space-x-2 mb-2">
-                      <span className="text-3xl font-bold text-blue-600">{pkg.displayPrice}</span>
-                      <span className="text-lg text-gray-400 line-through">{pkg.originalPrice}</span>
-                    </div>
-                    <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold">
-                      {pkg.badge}
-                    </span>
-                  </div>
-                  
-                  <div className="space-y-3 mb-6">
-                    {pkg.features.slice(0, 4).map((feature, idx) => (
-                      <div key={idx} className="flex items-start text-sm text-gray-700">
-                        <span className="text-green-500 mr-2 mt-1 flex-shrink-0">✓</span>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <button
-                    onClick={() => handlePayment(pkg)}
-                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-lg font-semibold transition-all duration-300"
-                  >
-                    Select Package
-                  </button>
-                </div>
-              </div>
-            ))}
+          {/* Special Offer Banner */}
+          <div className="mt-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-6 text-center shadow-xl animate-pulse">
+            <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2">
+              🎁 Special Launch Offer!
+            </h3>
+            <p className="text-blue-800 text-lg">
+              Get <span className="font-bold">90% OFF</span> on all packages + Free SEO Consultation worth ₹999
+            </p>
           </div>
         </div>
       </section>
 
       {/* === SERVICES SECTION === */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4 animate-fade-in-up">
               Our Premium Services
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive backlink solutions designed for maximum impact
+            <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
+              Eagle-eye precision in every backlink strategy
             </p>
           </div>
           
@@ -777,24 +741,25 @@ const Home = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200"
+                className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-blue-200 group animate-fade-in-up"
+                style={{animationDelay: service.delay}}
               >
-                <div className={`bg-gradient-to-r ${service.color} text-white p-4 rounded-xl w-16 h-16 mx-auto mb-6 flex items-center justify-center text-2xl`}>
+                <div className={`bg-gradient-to-r ${service.color} text-white p-4 rounded-2xl w-16 h-16 mx-auto mb-4 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
                   {service.icon}
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                <h3 className="text-xl font-bold text-blue-900 mb-3 text-center">
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-600 text-center mb-6">
+                <p className="text-blue-700 text-sm mb-4 text-center">
                   {service.description}
                 </p>
                 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-gray-700 text-sm">
-                      <span className="text-green-500 mr-2">•</span>
+                    <div key={idx} className="flex items-center text-blue-600 text-sm">
+                      <span className="text-green-500 mr-2">✓</span>
                       {feature}
                     </div>
                   ))}
@@ -806,46 +771,47 @@ const Home = () => {
       </section>
 
       {/* === STATS SECTION === */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 bg-white/10 rounded-xl backdrop-blur-sm"
+                className="text-center p-4 md:p-6 bg-white/10 rounded-lg backdrop-blur-sm transform transition-all duration-500 hover:scale-105 animate-fade-in-up"
+                style={{animationDelay: `${index * 0.1}s`}}
               >
-                <div className="text-3xl md:text-4xl mb-4">{stat.icon}</div>
-                <div className="text-3xl md:text-4xl font-bold text-yellow-300 mb-2">
+                <div className="text-2xl md:text-4xl mb-2 animate-bounce">{stat.icon}</div>
+                <div className="text-xl md:text-3xl font-bold text-yellow-400 mb-1 md:mb-2 animate-pulse">
                   {stat.number}
                 </div>
-                <div className="text-lg">{stat.label}</div>
+                <div className="text-white/80 text-xs md:text-sm">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Rest of the sections remain the same... */}
       {/* === FEATURES SECTION === */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Why Choose 360EagleWeb?
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Proven strategies backed by data and results
-            </p>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Why Choose 360EagleWeb?</h2>
+            <p className="text-base md:text-xl text-blue-700">Eagle-eye precision in every backlink strategy</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {features.map((feature, index) => (
               <div 
                 key={index} 
-                className="text-center p-8 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-200"
+                className="text-center group p-4 md:p-6 bg-white rounded-xl hover:bg-blue-50 hover:shadow-2xl transition-all duration-300 border border-blue-200 animate-fade-in-up"
+                style={{animationDelay: `${index * 0.1}s`}}
               >
-                <div className="text-3xl mb-6">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 md:p-4 rounded-full w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center text-xl md:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-transform">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">{feature.title}</h3>
+                <p className="text-blue-700 text-sm md:text-base">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -853,34 +819,53 @@ const Home = () => {
       </section>
 
       {/* === PROCESS SECTION === */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              How It Works
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Simple 4-step process to boost your rankings
-            </p>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">How EagleWeb Works</h2>
+            <p className="text-base md:text-xl text-blue-700">Simple 4-step process to soar your rankings</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {processSteps.map((step, index) => (
               <div 
                 key={index} 
-                className="text-center relative"
+                className="text-center group animate-fade-in-up"
+                style={{animationDelay: `${index * 0.2}s`}}
               >
-                <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200">
-                  <div className={`bg-gradient-to-r ${step.color} text-white p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center text-2xl`}>
+                <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-2">
+                  <div className={`bg-gradient-to-r ${step.color} text-white p-3 md:p-4 rounded-full w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center text-xl md:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-transform`}>
                     {step.icon}
                   </div>
-                  <div className="text-sm font-semibold text-blue-600 mb-2">{step.step}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <div className="text-xl md:text-2xl font-bold text-blue-600 mb-2 animate-pulse">{step.step}</div>
+                  <h3 className="text-lg md:text-xl font-bold text-blue-900 mb-2">{step.title}</h3>
+                  <p className="text-blue-700 text-sm md:text-base">{step.description}</p>
                 </div>
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 right-0 w-8 h-0.5 bg-blue-200 transform translate-x-4"></div>
-                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === PORTFOLIO SECTION === */}
+      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Our Success Stories</h2>
+            <p className="text-base md:text-xl text-blue-700">Real results for real businesses</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {portfolioProjects.map((project, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 md:p-6 animate-fade-in-up"
+                style={{animationDelay: `${index * 0.1}s`}}
+              >
+                <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">{project.title}</h3>
+                <p className="text-purple-600 font-medium text-sm md:text-base mb-2">{project.category}</p>
+                <p className="text-green-600 text-sm md:text-base font-semibold mb-2">{project.result}</p>
+                <p className="text-blue-700 text-xs md:text-sm">{project.description}</p>
               </div>
             ))}
           </div>
@@ -888,35 +873,30 @@ const Home = () => {
       </section>
 
       {/* === TESTIMONIALS SECTION === */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Client Success Stories
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Real results from real businesses
-            </p>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">What Our Clients Say</h2>
+            <p className="text-base md:text-xl text-blue-700">Don't just take our word for it</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className="bg-white p-8 rounded-xl shadow-lg border border-gray-200"
+                className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-blue-200 hover:border-purple-300 transition-all duration-300 animate-fade-in-up"
+                style={{animationDelay: `${index * 0.1}s`}}
               >
-                <div className="flex items-center mb-6">
+                <div className="flex items-center mb-3 md:mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">★</span>
+                    <span key={i} className="text-yellow-400 text-lg">⭐</span>
                   ))}
                 </div>
-                <p className="text-gray-700 text-lg mb-8 italic leading-relaxed">
-                  "{testimonial.text}"
-                </p>
-                <div className="border-t border-gray-200 pt-6">
-                  <p className="font-bold text-gray-900 text-lg">{testimonial.name}</p>
-                  <p className="text-purple-600">{testimonial.company}</p>
-                  <p className="text-gray-500 text-sm mt-1">{testimonial.service}</p>
+                <p className="text-blue-700 text-sm md:text-base mb-3 md:mb-4 italic">"{testimonial.text}"</p>
+                <div>
+                  <p className="font-semibold text-blue-900 text-base md:text-lg">{testimonial.name}</p>
+                  <p className="text-purple-600 text-sm md:text-base">{testimonial.company}</p>
+                  <p className="text-blue-500 text-xs md:text-sm mt-1">{testimonial.service}</p>
                 </div>
               </div>
             ))}
@@ -925,26 +905,23 @@ const Home = () => {
       </section>
 
       {/* === FAQ SECTION === */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600">
-              Get answers to common questions about our services
-            </p>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Frequently Asked Questions</h2>
+            <p className="text-base md:text-xl text-blue-700">Everything you need to know about our eagle-eye backlink services</p>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div 
                 key={index} 
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200"
+                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-200 animate-fade-in-up"
+                style={{animationDelay: `${index * 0.1}s`}}
               >
-                <div className="p-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">🦅 {faq.question}</h3>
+                  <p className="text-blue-700 text-sm md:text-base">{faq.answer}</p>
                 </div>
               </div>
             ))}
@@ -953,32 +930,28 @@ const Home = () => {
       </section>
 
       {/* === FINAL CTA === */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Ready to Boost Your Rankings?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join 1500+ satisfied clients who transformed their online presence
-          </p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 animate-pulse">Ready to Soar Your Rankings?</h2>
+          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services at <span className="text-yellow-300 font-semibold">90% OFF</span>. Try our demo for just ₹1!</p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
               onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105"
+              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 animate-bounce"
             >
-              View All Packages
+              <span>🦅 View All Packages</span>
             </button>
             <button
               onClick={() => handlePayment(backlinkPackages[0])}
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105"
+              className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
             >
-              Get Started from ₹199
+              <span>🚀 Try Demo for ₹1</span>
             </button>
           </div>
           
-          <p className="text-blue-200 text-sm">
-            Professional Services | 24/7 Support | Satisfaction Guaranteed
+          <p className="text-blue-200 mt-4 md:mt-6 text-xs md:text-sm">
+            ✅ Free Consultation ✅ 24/7 Support ✅ Money-Back Guarantee
           </p>
         </div>
       </section>
@@ -986,113 +959,132 @@ const Home = () => {
       {/* Payment Form Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl p-6 md:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900">Complete Your Order</h3>
+          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto border-2 border-blue-400 animate-fade-in-up">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-blue-900">🦅 Complete Your Order</h3>
               <button
                 onClick={() => {
                   setShowForm(false);
                   setPaymentSuccess(false);
                 }}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-blue-500 hover:text-blue-700"
               >
                 ✕
               </button>
             </div>
             
             {paymentSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-                Payment Successful! Please provide your details below.
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                ✅ Payment Successful! Please submit your details below.
               </div>
             )}
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                <label className="block text-sm font-medium text-blue-700 mb-1">Full Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your full name"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                <label className="block text-sm font-medium text-blue-700 mb-1">Email Address *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your email"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label>
+                <label className="block text-sm font-medium text-blue-700 mb-1">Mobile Number *</label>
                 <input
                   type="tel"
                   name="mobile"
                   value={formData.mobile}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your mobile number"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Website Domain *</label>
+                <label className="block text-sm font-medium text-blue-700 mb-1">Website Domain *</label>
                 <input
                   type="url"
                   name="website"
                   value={formData.website}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="https://yourwebsite.com"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Keywords *</label>
+                <label className="block text-sm font-medium text-blue-700 mb-1">Keywords *</label>
                 <textarea
                   name="keywords"
                   value={formData.keywords}
                   onChange={handleInputChange}
                   required
                   rows="3"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your target keywords (comma separated)"
                 />
               </div>
               
               {selectedPackage && (
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                   <p className="text-sm font-medium text-blue-700">Selected Package:</p>
                   <p className="text-lg font-bold text-blue-600">{selectedPackage.name}</p>
-                  <p className="text-blue-600">{selectedPackage.backlinks}</p>
-                  <p className="text-blue-500">Price: {selectedPackage.displayPrice}</p>
+                  <p className="text-sm text-blue-600">{selectedPackage.backlinks}</p>
+                  <p className="text-sm text-blue-500">Price: {selectedPackage.displayPrice}</p>
                 </div>
               )}
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
-                Submit Details & Complete Order
+                🦅 Complete Order & Submit Details
               </button>
             </form>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out both;
+        }
+      `}</style>
     </div>
   );
 };
 
 export default Home;
+
+
+
