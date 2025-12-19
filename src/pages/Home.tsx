@@ -53,16 +53,16 @@ const Home = () => {
   const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
   const WHATSAPP_NUMBER = "919310533973";
 
-  // Hero Slides
+  // Hero Slides - Updated to remove ₹1 references
   const heroSlides = [
     {
       title: "Premium Backlink Services",
-      subtitle: "Demo Package: ₹1 Only",
+      subtitle: "Starting at Just ₹99",
       originalPrice: "₹999",
       description: "Buy High Quality DoFollow Backlinks with 70-90 DA, PA Wiki, Article Directories, Social Bookmarks & News Sites. Google Algorithm Safe Link Building for Higher Rankings.",
-      badge: "🚀 DEMO ₹1 ONLY",
+      badge: "🚀 LIMITED TIME OFFER",
       bgGradient: "from-blue-900 via-indigo-800 to-purple-700",
-      cta: "Try Demo for ₹1"
+      cta: "View Packages"
     },
     {
       title: "Google Algorithm Safe Link Building",
@@ -84,32 +84,8 @@ const Home = () => {
     }
   ];
 
-  // Backlink Packages - MOVED UP RIGHT AFTER HERO
+  // Backlink Packages - REMOVED ₹1 PACKAGE, STARTING FROM ₹99
   const backlinkPackages = [
-    {
-      id: "demo_backlinks",
-      name: "EAGLE DEMO",
-      price: 1,
-      displayPrice: "₹1",
-      originalPrice: "₹999",
-      backlinks: "10 Premium Backlinks",
-      keywords: "SEO For 1 Keyword & 1 URL",
-      features: [
-        "10 Quality Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Social Bookmarking",
-        "5 Authority Profile Links",
-        "Delivery Within 3 Working Days",
-        "100% Google Safe",
-        "Fast Index Process",
-        "Perfect for Testing Service Quality"
-      ],
-      popular: false,
-      badge: "DEMO",
-      color: "from-blue-500 to-cyan-500",
-      demo: true,
-      icon: "🚀"
-    },
     {
       id: "300_backlinks",
       name: "EAGLE START",
@@ -119,7 +95,8 @@ const Home = () => {
       backlinks: "300 Premium Backlinks",
       keywords: "SEO For 2 Keywords & 1 URL",
       features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "300 Quality Mixed Backlinks",
+        "Articles, Forum & Profile Links",
         "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
         "Press Releases",
@@ -132,10 +109,11 @@ const Home = () => {
         "40 Days Ping Back Service",
         "Submit To 1020+ Search Engines"
       ],
-      popular: false,
+      popular: true,
       badge: "90% OFF",
       color: "from-green-500 to-emerald-500",
-      icon: "🎯"
+      icon: "🎯",
+      bestFor: "Perfect for New Websites"
     },
     {
       id: "750_backlinks",
@@ -146,7 +124,8 @@ const Home = () => {
       backlinks: "750 Premium Backlinks",
       keywords: "SEO For 2 Keywords & 2 URL",
       features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "750 Quality Mixed Backlinks",
+        "Articles, Forum & Profile Links",
         "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
         "Press Releases",
@@ -157,12 +136,14 @@ const Home = () => {
         "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
+        "Submit To 1020+ Search Engines",
+        "Priority Support"
       ],
-      popular: true,
+      popular: false,
       badge: "90% OFF",
       color: "from-purple-500 to-indigo-500",
-      icon: "⚡"
+      icon: "⚡",
+      bestFor: "Growing Businesses"
     },
     {
       id: "1200_backlinks",
@@ -173,7 +154,8 @@ const Home = () => {
       backlinks: "1200 Premium Backlinks",
       keywords: "SEO For 3 Keywords & 2 URL",
       features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "1200 Quality Mixed Backlinks",
+        "Articles, Forum & Profile Links",
         "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
         "Press Releases",
@@ -184,12 +166,15 @@ const Home = () => {
         "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
+        "Submit To 1020+ Search Engines",
+        "Priority Support",
+        "Detailed Analytics Report"
       ],
       popular: false,
       badge: "90% OFF",
       color: "from-orange-500 to-red-500",
-      icon: "🏆"
+      icon: "🏆",
+      bestFor: "Established Websites"
     },
     {
       id: "2000_backlinks",
@@ -200,7 +185,8 @@ const Home = () => {
       backlinks: "2000+ Premium Backlinks",
       keywords: "SEO For 6 Keywords & 2 URL",
       features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "2000+ Quality Mixed Backlinks",
+        "Articles, Forum & Profile Links",
         "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
         "Press Releases",
@@ -211,12 +197,16 @@ const Home = () => {
         "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
+        "Submit To 1020+ Search Engines",
+        "Dedicated Account Manager",
+        "Detailed Analytics Report",
+        "Monthly Performance Review"
       ],
       popular: false,
       badge: "90% OFF",
       color: "from-pink-500 to-rose-500",
-      icon: "💼"
+      icon: "💼",
+      bestFor: "Large Businesses"
     },
     {
       id: "5000_backlinks",
@@ -227,7 +217,8 @@ const Home = () => {
       backlinks: "5,000+ Premium Backlinks",
       keywords: "SEO For 10 Keywords & 5 URL",
       features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
+        "5000+ Quality Mixed Backlinks",
+        "Articles, Forum & Profile Links",
         "Do-Follow Backlinks",
         "Premium Wiki Backlinks",
         "Press Releases",
@@ -238,12 +229,18 @@ const Home = () => {
         "100% Google Safe",
         "Super Fast Index Process",
         "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
+        "Submit To 1020+ Search Engines",
+        "Dedicated Account Manager",
+        "Detailed Analytics Report",
+        "Monthly Performance Review",
+        "Competitor Analysis",
+        "Custom Strategy Planning"
       ],
       popular: false,
       badge: "90% OFF",
       color: "from-teal-500 to-cyan-500",
-      icon: "👑"
+      icon: "👑",
+      bestFor: "Enterprise & Agencies"
     }
   ];
 
@@ -392,14 +389,14 @@ const Home = () => {
       company: "E-commerce Store Owner",
       text: "360EagleWeb transformed my website's ranking. From page 5 to page 1 in just 4 weeks! The backlink quality is exceptional.",
       rating: 5,
-      service: "750 Backlinks Package"
+      service: "300 Backlinks Package"
     },
     {
       name: "Priya Sharma",
       company: "Blogger & Content Creator",
-      text: "The demo package convinced me to go for the full service. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
+      text: "Excellent service! My organic traffic increased by 200% in 6 weeks. The detailed reports helped me track progress effectively.",
       rating: 5,
-      service: "Demo + 1200 Backlinks"
+      service: "750 Backlinks Package"
     },
     {
       name: "Amit Patel",
@@ -543,7 +540,7 @@ const Home = () => {
         <title>360EagleWeb - Premium Backlink Services | Buy High Quality DoFollow Backlinks</title>
         <meta 
           name="description" 
-          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Demo: ₹1 Only."
+          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Starting at ₹99 Only."
         />
         <meta 
           name="keywords" 
@@ -619,15 +616,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* === PACKAGES SECTION - MOVED RIGHT AFTER HERO === */}
+      {/* === PACKAGES SECTION === */}
       <section id="packages" className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4 animate-fade-in-up">
-              🦅 EagleWeb Backlink Packages
+              🦅 Choose Your Flight Plan
             </h2>
             <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
-              Choose your flight plan to higher rankings with premium backlinks
+              Premium backlink packages starting at just ₹99
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
@@ -639,6 +636,9 @@ const Home = () => {
               <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                 🛡️ Google Safe
               </span>
+              <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                📈 Proven Results
+              </span>
             </div>
           </div>
           
@@ -647,19 +647,17 @@ const Home = () => {
               <div 
                 key={index} 
                 className={`bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
-                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-3' : 
-                  pkg.demo ? 'border-blue-500 transform hover:-translate-y-3' : 'border-blue-200 hover:border-blue-400'
+                  pkg.popular 
+                    ? 'border-green-500 transform hover:-translate-y-3 relative' 
+                    : 'border-blue-200 hover:border-blue-400 transform hover:-translate-y-2'
                 } overflow-hidden group animate-fade-in-up`}
                 style={{animationDelay: `${index * 0.1}s`}}
               >
                 {pkg.popular && (
-                  <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
-                    ⭐ MOST POPULAR CHOICE
-                  </div>
-                )}
-                {pkg.demo && (
-                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
-                    🚀 PERFECT FOR TESTING
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 px-6 rounded-full font-bold text-sm md:text-base animate-pulse shadow-lg">
+                      ⭐ MOST POPULAR
+                    </div>
                   </div>
                 )}
                 
@@ -670,6 +668,11 @@ const Home = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">{pkg.name}</h3>
                     <p className="text-blue-600 font-semibold text-lg md:text-xl mb-2">{pkg.backlinks}</p>
                     <p className="text-blue-700 text-sm md:text-base mb-4">{pkg.keywords}</p>
+                    {pkg.bestFor && (
+                      <p className="text-sm text-blue-500 bg-blue-50 inline-block px-3 py-1 rounded-full">
+                        ✅ {pkg.bestFor}
+                      </p>
+                    )}
                   </div>
                   
                   {/* Pricing */}
@@ -678,11 +681,10 @@ const Home = () => {
                       <span className="text-3xl md:text-4xl font-bold text-blue-600">{pkg.displayPrice}</span>
                       <span className="text-lg md:text-xl text-blue-400 line-through">{pkg.originalPrice}</span>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-sm font-bold ${
-                      pkg.demo ? 'bg-blue-500 text-white' : 'bg-red-500 text-white'
-                    }`}>
+                    <span className="px-3 py-1 rounded-full text-sm font-bold bg-red-500 text-white animate-pulse">
                       {pkg.badge}
                     </span>
+                    <p className="text-sm text-blue-600 mt-2">One-time payment • No hidden fees</p>
                   </div>
                   
                   {/* Features */}
@@ -699,14 +701,12 @@ const Home = () => {
                   <button
                     onClick={() => handlePayment(pkg)}
                     className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg ${
-                      pkg.demo 
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white animate-pulse' 
-                        : pkg.popular
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
+                      pkg.popular
+                        ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-green-500/30'
                         : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
                     }`}
                   >
-                    {pkg.demo ? '🚀 Try Demo - ₹1 Only' : `🦅 Order Now - ${pkg.displayPrice}`}
+                    🦅 Order Now - {pkg.displayPrice}
                   </button>
                 </div>
               </div>
@@ -714,13 +714,62 @@ const Home = () => {
           </div>
 
           {/* Special Offer Banner */}
-          <div className="mt-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-6 text-center shadow-xl animate-pulse">
-            <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2">
-              🎁 Special Launch Offer!
+          <div className="mt-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-6 md:p-8 text-center shadow-xl transform hover:scale-105 transition-all duration-300">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+              🎁 Special Launch Offer - Limited Time!
             </h3>
-            <p className="text-blue-800 text-lg">
-              Get <span className="font-bold">90% OFF</span> on all packages + Free SEO Consultation worth ₹999
+            <p className="text-white/90 text-lg mb-4">
+              Get <span className="font-bold text-yellow-300">90% OFF</span> on all packages + Free SEO Consultation worth ₹999
             </p>
+            <button
+              onClick={() => handlePayment(backlinkPackages[0])}
+              className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:scale-105"
+            >
+              🚀 Start with ₹99 Package
+            </button>
+          </div>
+
+          {/* Comparison Table */}
+          <div className="mt-12 bg-white rounded-2xl shadow-xl p-6">
+            <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center">Package Comparison</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-blue-50">
+                    <th className="p-4 text-left">Features</th>
+                    {backlinkPackages.map((pkg, idx) => (
+                      <th key={idx} className="p-4 text-center">{pkg.name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-4 border-b">Backlinks</td>
+                    {backlinkPackages.map((pkg, idx) => (
+                      <td key={idx} className="p-4 border-b text-center font-bold">{pkg.backlinks}</td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 border-b">Keywords</td>
+                    {backlinkPackages.map((pkg, idx) => (
+                      <td key={idx} className="p-4 border-b text-center">{pkg.keywords}</td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 border-b">Delivery Time</td>
+                    {backlinkPackages.map((pkg, idx) => (
+                      <td key={idx} className="p-4 border-b text-center">{pkg.price >= 499 ? '10 Days' : '7 Days'}</td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 border-b">Price</td>
+                    {backlinkPackages.map((pkg, idx) => (
+                      <td key={idx} className="p-4 border-b text-center font-bold text-blue-600">{pkg.displayPrice}</td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -791,7 +840,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Rest of the sections remain the same... */}
       {/* === FEATURES SECTION === */}
       <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -933,7 +981,7 @@ const Home = () => {
       <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 animate-pulse">Ready to Soar Your Rankings?</h2>
-          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services at <span className="text-yellow-300 font-semibold">90% OFF</span>. Try our demo for just ₹1!</p>
+          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services at <span className="text-yellow-300 font-semibold">90% OFF</span>. Start with just ₹99!</p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
@@ -946,12 +994,12 @@ const Home = () => {
               onClick={() => handlePayment(backlinkPackages[0])}
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
             >
-              <span>🚀 Try Demo for ₹1</span>
+              <span>🚀 Start with ₹99 Package</span>
             </button>
           </div>
           
           <p className="text-blue-200 mt-4 md:mt-6 text-xs md:text-sm">
-            ✅ Free Consultation ✅ 24/7 Support ✅ Money-Back Guarantee
+            ✅ 24/7 Support ✅ Money-Back Guarantee ✅ Free Consultation
           </p>
         </div>
       </section>
@@ -1085,6 +1133,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
